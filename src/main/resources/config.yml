@@ -1,0 +1,93 @@
+server_name: "Dev"
+
+staff:
+  connect:
+    - "&b[S] &b%player% &fhas &aconnected &fto &b%server%"
+  disconnect:
+    - "&b[S] &b%player% &fhas &cdisconnected &ffrom &b%server%"
+
+executor: "&cThis command is only executable by players."
+no_permission: "&cNo permission."
+player_offline: "&cThis player is offline."
+
+command:
+  discord: "&eDiscord: &fdiscord.gg/lol"
+  twitter: "&eTwitter: &fdiscord.gg/lol"
+  store: "&eStore: &fdiscord.gg/lol"
+  gamemode:
+    usage: "&cUsage: /%command% <gamemode>"
+    updated: "&fSet gamemode of &6%player% &fto &6%gamemode%&f."
+  chat:
+    usage:
+      - "&7&m---------------------------------------"
+      - "&e&lChat Commands"
+      - ""
+      - "&e/chat clear &f- &7Clear the chat."
+      - "&e/chat mute &f- &7Mute the chat."
+      - "&7&m---------------------------------------"
+    clear:
+      message: "&ePublic chat has been cleared."
+      lines: 300
+    mute:
+      enabled: "&ePublic chat has been &aenabled&e."
+      disabled: "&ePublic chat has been &cdisabled&e."
+      currently_enabled: "&cPublic chat is currently muted."
+  teleport:
+    usage: "&cUsage: /%command% <player>"
+    target: "&fTeleporting to &6%target%&f."
+    here:
+      target: "&fTeleporting you to &6%player%&f."
+      player: "&fTeleporting &6%target% &fto &6%player%&f."
+  fly:
+    enabled: "&eFly: &aenabled"
+    disabled: "&eFly: &cdisabled"
+  day: "&aYou have set your time to &fday&a."
+  sunset: "&aYou have set your time to &fsunset&a."
+  night: "&aYou have set your time to &fnight&a."
+  vanish:
+    enabled: "&aVanish &ehas been &aenabled&6."
+    disabled: "&aVanish &ehas been &cdisabled&6."
+  staffchat:
+    usage: "&cUsage: /%command% <message...>"
+    format:
+      - "&b[S] &7[%server%&7] &b%player%&7: &f%message%"
+  message:
+    usage: "&cUsage: /%command% <player> <message...>"
+    to:
+      - "&7(To %target%&7) %message%"
+    from:
+      - "&7(From %player%&7) %message%"
+    sounds:
+      enabled: "&eMessaging sounds have been enabled."
+      disabled: "&eMessaging sounds have been disabled."
+    togglepm:
+      enabled: "&aPrivate messages have been enabled."
+      disabled: "&cPrivate messages have been disabled."
+      messages_disabled: "&cSomeone has messages toggled off."
+    reply:
+      usage: "&cUsage: /%command% <message...>"
+  heal:
+    player: "&6You have been healed."
+    target: "&6You have healed &f%target%&6."
+  feed:
+    player: "&6You have been fed."
+    target: "&6You have fed &f%target%&6."
+  list:
+    - "&4Owner&7, &bDeveloper&7, &cPlatform Admin&7, &cAdmin&7, &5Senior Mod&7, &5Mod&7, &eTrialMod&7, &9Builder&7, &dPartner&7, &dFamous&7, &dYouTuber&7, &fDefault"
+    - "&f(%online_players%/%max_players%) [%playerNames%]"
+  request:
+    usage: "&cUsage: /%command% <message...>"
+    sent: "&aWe have received your request."
+    format:
+      - "&b[R] &7[%server%] &b%player% &7has requested assistance. &bReason: &7%message%"
+    cooldown:
+      time: 120
+      message: "&cYou can only make one staff request every 2 minutes."
+  report:
+    usage: "&cUsage: /%command% <player> <message...>"
+    sent: "&aWe have received your report."
+    format:
+      - "&b[R] &7[%server%] &b%target% &7was reported by &b%player%&7. &bReason: &7%message%"
+    cooldown:
+      time: 120
+      message: "&cYou can only make one staff request every 2 minutes."
