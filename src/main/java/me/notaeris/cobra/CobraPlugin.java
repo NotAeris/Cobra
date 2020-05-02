@@ -2,21 +2,24 @@ package me.notaeris.cobra;
 
 import me.notaeris.cobra.command.*;
 import me.notaeris.cobra.listener.ChatListener;
+import me.notaeris.cobra.listener.PlayerListener;
+import me.notaeris.cobra.util.MongoDB;
+import me.notaeris.cobra.util.command.CommandFramework;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import me.notaeris.cobra.listener.PlayerListener;
-import me.notaeris.cobra.util.command.CommandFramework;
 
 import java.util.Arrays;
 
 public class CobraPlugin extends JavaPlugin {
 
+    protected MongoDB mongoDB;
     protected CommandFramework framework;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
 
+        this.mongoDB = new MongoDB();
         this.framework = new CommandFramework(this);
         this.registerCommands();
         this.registerListeners();
@@ -42,7 +45,8 @@ public class CobraPlugin extends JavaPlugin {
                 new FeedCommand(),
                 new ListCommand(),
                 new RequestCommand(),
-                new ReportCommand()
+                new ReportCommand(),
+                new ClearCommand()
         ).forEach(command -> this.framework.registerCommands(command));
     }
 

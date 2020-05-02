@@ -1,3 +1,14 @@
+mongo:
+  host: 127.0.0.1
+  port: 27017
+  database:
+    name: "cobra-core"
+    collection: "profiles"
+  authentication:
+    enabled: false
+    username: ''
+    password: ''
+
 server_name: "Dev"
 
 staff:
@@ -91,3 +102,6 @@ command:
     cooldown:
       time: 120
       message: "&cYou can only make one staff request every 2 minutes."
+  clear:
+    player: "&6You have cleared your inventory."
+    target: "&6You have cleared &f%target%&6's inventory."

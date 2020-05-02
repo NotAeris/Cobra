@@ -16,7 +16,7 @@ public class StaffChatCommand {
         String message = StringUtils.join(args.getArgs(), ' ', 0, args.length());
 
         if(args.length() == 0) {
-            args.getSender().sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.staffchat.usage"))
+            player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.staffchat.usage"))
                     .replace("%command%", args.getLabel()));
         } else {
             CobraPlugin.get().getConfig().getStringList("command.staffchat.format").forEach(string -> PlayerUtil.getOnlinePlayers().forEach(target -> {

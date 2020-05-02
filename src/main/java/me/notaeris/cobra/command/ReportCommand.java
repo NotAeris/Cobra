@@ -15,20 +15,19 @@ public class ReportCommand {
 
     @Command(name = "report", playerOnly = true)
     public void execute(CommandArgs args) {
-        CommandSender sender = args.getSender();
         Player player = args.getPlayer();
         String message = StringUtils.join(args.getArgs(), ' ', 1, args.length());
 
         if(args.length() <= 1) {
-            sender.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.usage"))
+            player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.usage"))
                     .replace("%command%", args.getLabel()));
         } else {
             Player target = Bukkit.getPlayer(args.getArgs(0));
             if(target == null) {
-                sender.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
+                player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             } else {
                 if(Cooldown.hasCooldown(player.getUniqueId(), "report")) {
-                    sender.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.cooldown.message")));
+                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.cooldown.message")));
                 } else {
                     CobraPlugin.get().getConfig().getStringList("command.report.format").forEach(string -> PlayerUtil.getOnlinePlayers().forEach(target2 -> {
                         if(target2.hasPermission("cobra.staff")) {
@@ -39,7 +38,7 @@ public class ReportCommand {
                                     .replace("%message%", message));
                         }
                     }));
-                    sender.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.sent")));
+                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.sent")));
                     Cooldown cooldown = new Cooldown(player.getUniqueId(), "report", CobraPlugin.get().getConfig().getInt("command.report.cooldown.time"));
                     cooldown.start();
                 }

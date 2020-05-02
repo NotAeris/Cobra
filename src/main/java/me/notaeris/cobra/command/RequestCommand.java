@@ -7,23 +7,21 @@ import me.notaeris.cobra.util.PlayerUtil;
 import me.notaeris.cobra.util.command.Command;
 import me.notaeris.cobra.util.command.CommandArgs;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class RequestCommand {
 
     @Command(name = "request", aliases = { "helpop" }, playerOnly = true)
     public void execute(CommandArgs args) {
-        CommandSender sender = args.getSender();
         Player player = args.getPlayer();
         String message = StringUtils.join(args.getArgs(), ' ', 0, args.length());
 
         if(args.length() == 0) {
-            sender.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.request.usage"))
+            player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.request.usage"))
                     .replace("%command%", args.getLabel()));
         } else {
             if(Cooldown.hasCooldown(player.getUniqueId(), "request")) {
-                sender.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.request.cooldown.message")));
+                player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.request.cooldown.message")));
             } else {
                 CobraPlugin.get().getConfig().getStringList("command.request.format").forEach(string -> PlayerUtil.getOnlinePlayers().forEach(target -> {
                     if(target.hasPermission("cobra.staff")) {
@@ -33,7 +31,7 @@ public class RequestCommand {
                                 .replace("%message%", message));
                     }
                 }));
-                sender.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.request.sent")));
+                player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.request.sent")));
                 Cooldown cooldown = new Cooldown(player.getUniqueId(), "request", CobraPlugin.get().getConfig().getInt("command.request.cooldown.time"));
                 cooldown.start();
             }

@@ -1,6 +1,8 @@
 package me.notaeris.cobra.listener;
 
 import me.notaeris.cobra.CobraPlugin;
+import me.notaeris.cobra.profile.Profile;
+import me.notaeris.cobra.profile.ProfileState;
 import me.notaeris.cobra.util.CC;
 import me.notaeris.cobra.util.PlayerUtil;
 import org.bukkit.entity.Player;
@@ -15,6 +17,13 @@ public class PlayerListener implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         event.setJoinMessage(null);
         Player player = event.getPlayer();
+        Profile profile = new Profile(player.getUniqueId());
+
+        if(profile.getPlayer().hasPermission("cobra.staff")) {
+            profile.setState(ProfileState.STAFF);
+        } else {
+            profile.setState(ProfileState.NORMAL);
+        }
 
         CobraPlugin.get().getConfig().getStringList("staff.connect").forEach(string -> PlayerUtil.getOnlinePlayers().forEach(target -> {
             if(target.hasPermission("cobra.staff")) {
