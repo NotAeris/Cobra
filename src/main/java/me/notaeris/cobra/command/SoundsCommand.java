@@ -7,10 +7,11 @@ import me.notaeris.cobra.util.command.CommandArgs;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SoundsCommand {
 
-    public static ArrayList<Player> sounds = new ArrayList<>();
+    public static List<Player> sounds = new ArrayList<>();
 
     @Command(name = "sounds", playerOnly = true)
     public void execute(CommandArgs args) {

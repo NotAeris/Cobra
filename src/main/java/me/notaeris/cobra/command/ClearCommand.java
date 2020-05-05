@@ -24,9 +24,9 @@ public class ClearCommand {
             } else {
                 target.getInventory().setArmorContents(null);
                 target.getInventory().clear();
-                target.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.clear.target"))
+                target.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.clear.player")));
+                player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.clear.target"))
                         .replace("%target%", target.getName()));
-                player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.clear.player")));
             }
         }
     }

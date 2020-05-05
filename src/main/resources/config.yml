@@ -4,18 +4,6 @@ mongo:
   database:
     name: "cobra-core"
     collection: "profiles"
-  authentication:
-    enabled: false
-    username: ''
-    password: ''
-
-server_name: "Dev"
-
-staff:
-  connect:
-    - "&b[S] &b%player% &fhas &aconnected &fto &b%server%"
-  disconnect:
-    - "&b[S] &b%player% &fhas &cdisconnected &ffrom &b%server%"
 
 executor: "&cThis command is only executable by players."
 no_permission: "&cNo permission."
@@ -103,5 +91,42 @@ command:
       time: 120
       message: "&cYou can only make one staff request every 2 minutes."
   clear:
-    player: "&6You have cleared your inventory."
+    player: "&6Your inventory has been cleared."
     target: "&6You have cleared &f%target%&6's inventory."
+  staffmode:
+    enabled: "&6StaffMode: &aenabled."
+    disabled: "&6StaffMode: &cdisabled."
+    item:
+      teleporter:
+        material: COMPASS
+        slot: 0
+        name: "&6Teleporter"
+      inspector:
+        material: BOOK
+        slot: 1
+        name: "&6Inspector"
+      vanish:
+        material: INK_SACK
+        amount: 1
+        value: 8
+        slot: 8
+        name: "&6Vanish"
+        value2: 10
+  invsee:
+    usage: "&cUsage: /%command% <player>"
+    message: "&eOpening inventory of: &b%target%"
+
+invsee:
+  size: 45
+  name: "&7Inventory &7of &b%target%"
+
+staffmode:
+  you_cannot_do_this: "&c&lYou cannot do this whilst in StaffMode!"
+
+server_name: "Dev"
+
+staff:
+  connect:
+    - "&b[S] &b%player% &fhas &aconnected &fto &b%server%"
+  disconnect:
+    - "&b[S] &b%player% &fhas &cdisconnected &ffrom &b%server%"

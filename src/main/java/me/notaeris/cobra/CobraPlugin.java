@@ -3,6 +3,7 @@ package me.notaeris.cobra;
 import me.notaeris.cobra.command.*;
 import me.notaeris.cobra.listener.ChatListener;
 import me.notaeris.cobra.listener.PlayerListener;
+import me.notaeris.cobra.listener.StaffModeListener;
 import me.notaeris.cobra.util.MongoDB;
 import me.notaeris.cobra.util.command.CommandFramework;
 import org.bukkit.Bukkit;
@@ -37,8 +38,7 @@ public class CobraPlugin extends JavaPlugin {
                 new TimeCommands(),
                 new VanishCommand(),
                 new StaffChatCommand(),
-                new MessageCommand(),
-                new ReplyCommand(),
+                new MessageCommands(),
                 new TogglePmCommand(),
                 new SoundsCommand(),
                 new HealCommand(),
@@ -46,14 +46,17 @@ public class CobraPlugin extends JavaPlugin {
                 new ListCommand(),
                 new RequestCommand(),
                 new ReportCommand(),
-                new ClearCommand()
+                new ClearCommand(),
+                new StaffModeCommand(),
+                new InvseeCommand()
         ).forEach(command -> this.framework.registerCommands(command));
     }
 
     private void registerListeners() {
         Arrays.asList(
                 new PlayerListener(),
-                new ChatListener()
+                new ChatListener(),
+                new StaffModeListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
 }

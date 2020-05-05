@@ -14,7 +14,6 @@ import java.util.UUID;
 public class Profile {
 
     private final UUID uuid;
-    protected ProfileState state;
 
     public Profile(UUID uuid) {
         this.uuid = uuid;
@@ -45,9 +44,5 @@ public class Profile {
 
     public Player getPlayer() {
         return Bukkit.getPlayer(this.uuid);
-    }
-
-    public void setState(ProfileState state) {
-        this.state = state;
     }
 }

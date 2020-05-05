@@ -7,10 +7,11 @@ import me.notaeris.cobra.util.command.CommandArgs;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TogglePmCommand {
 
-    public static ArrayList<Player> togglepm = new ArrayList<>();
+    public static List<Player> togglepm = new ArrayList<>();
 
     @Command(name = "togglepm", aliases = { "tpm" }, playerOnly = true)
     public void execute(CommandArgs args) {

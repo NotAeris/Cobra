@@ -1,3 +1,5 @@
 main: ${pom.groupId}.CobraPlugin
 name: ${pom.artifactId}
 version: ${pom.version}
+
+softdepend: [WorldEdit]
