@@ -29,11 +29,15 @@ public class PlayerListener implements Listener {
                 }
             }));
         }
-        if(CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.teleporter.name")).equalsIgnoreCase(player.getInventory().getItem(0).getItemMeta().getDisplayName())
-                || CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.inspector.name")).equalsIgnoreCase(player.getInventory().getItem(1).getItemMeta().getDisplayName())
-                || CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.vanish.name")).equalsIgnoreCase(player.getInventory().getItem(8).getItemMeta().getDisplayName())) {
-            player.getInventory().clear();
-            player.setGameMode(GameMode.SURVIVAL);
+        if(player.getInventory().getItem(0) == null || player.getInventory().getItem(1).getItemMeta().getDisplayName() == null || player.getInventory().getItem(8).getItemMeta().getDisplayName() == null) {
+            return;
+        } else {
+            if(CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.teleporter.name")).equalsIgnoreCase(player.getInventory().getItem(0).getItemMeta().getDisplayName())
+                    || CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.inspector.name")).equalsIgnoreCase(player.getInventory().getItem(1).getItemMeta().getDisplayName())
+                    || CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.vanish.name")).equalsIgnoreCase(player.getInventory().getItem(8).getItemMeta().getDisplayName())) {
+                player.getInventory().clear();
+                player.setGameMode(GameMode.SURVIVAL);
+            }
         }
     }
 
