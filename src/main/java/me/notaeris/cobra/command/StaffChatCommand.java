@@ -2,8 +2,8 @@ package me.notaeris.cobra.command;
 
 import me.notaeris.cobra.CobraPlugin;
 import me.notaeris.cobra.util.CC;
-import me.notaeris.cobra.util.PlayerUtil;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import me.notaeris.cobra.util.command.Command;
 import me.notaeris.cobra.util.command.CommandArgs;
@@ -19,7 +19,7 @@ public class StaffChatCommand {
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.staffchat.usage"))
                     .replace("%command%", args.getLabel()));
         } else {
-            CobraPlugin.get().getConfig().getStringList("command.staffchat.format").forEach(string -> PlayerUtil.getOnlinePlayers().forEach(target -> {
+            CobraPlugin.get().getConfig().getStringList("command.staffchat.format").forEach(string -> Bukkit.getOnlinePlayers().forEach(target -> {
                 if(target.hasPermission("cobra.staff")) {
                     target.sendMessage(CC.translate(string
                             .replace("%server%", CobraPlugin.get().getConfig().getString("server_name")))

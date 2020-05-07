@@ -3,7 +3,7 @@ package me.notaeris.cobra.listener;
 import me.notaeris.cobra.CobraPlugin;
 import me.notaeris.cobra.profile.Profile;
 import me.notaeris.cobra.util.CC;
-import me.notaeris.cobra.util.PlayerUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +21,7 @@ public class PlayerListener implements Listener {
         Profile profile = new Profile(player.getUniqueId());
 
         if(profile.getPlayer().hasPermission("cobra.staff")) {
-            CobraPlugin.get().getConfig().getStringList("staff.connect").forEach(string -> PlayerUtil.getOnlinePlayers().forEach(target -> {
+            CobraPlugin.get().getConfig().getStringList("staff.connect").forEach(string -> Bukkit.getOnlinePlayers().forEach(target -> {
                 if(target.hasPermission("cobra.staff")) {
                     target.sendMessage(CC.translate(string
                             .replace("%server%", CobraPlugin.get().getConfig().getString("server_name")))
@@ -47,7 +47,7 @@ public class PlayerListener implements Listener {
         Profile profile = new Profile(event.getPlayer().getUniqueId());
 
         if(profile.getPlayer().hasPermission("cobra.staff")) {
-            CobraPlugin.get().getConfig().getStringList("staff.disconnect").forEach(string -> PlayerUtil.getOnlinePlayers().forEach(target -> {
+            CobraPlugin.get().getConfig().getStringList("staff.disconnect").forEach(string -> Bukkit.getOnlinePlayers().forEach(target -> {
                 if(target.hasPermission("cobra.staff")) {
                     target.sendMessage(CC.translate(string
                             .replace("%server%", CobraPlugin.get().getConfig().getString("server_name")))

@@ -2,9 +2,9 @@ package me.notaeris.cobra.command;
 
 import me.notaeris.cobra.CobraPlugin;
 import me.notaeris.cobra.util.CC;
-import me.notaeris.cobra.util.PlayerUtil;
 import me.notaeris.cobra.util.command.Command;
 import me.notaeris.cobra.util.command.CommandArgs;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class VanishCommand {
     public static void setVanished(Player player, boolean isVanished) {
         if(isVanished) {
             vanish.add(player);
-            for(Player players : PlayerUtil.getOnlinePlayers()) {
+            for(Player players : Bukkit.getOnlinePlayers()) {
                 if(players.hasPermission("cobra.command.vanish")) {
                     players.showPlayer(player);
                 } else {
@@ -41,7 +41,7 @@ public class VanishCommand {
         }
         if(!isVanished) {
             vanish.remove(player);
-            for(Player players : PlayerUtil.getOnlinePlayers()) {
+            for(Player players : Bukkit.getOnlinePlayers()) {
                 players.showPlayer(player);
             }
         }

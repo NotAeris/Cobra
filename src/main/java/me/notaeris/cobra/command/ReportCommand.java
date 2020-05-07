@@ -3,12 +3,10 @@ package me.notaeris.cobra.command;
 import me.notaeris.cobra.CobraPlugin;
 import me.notaeris.cobra.util.CC;
 import me.notaeris.cobra.util.Cooldown;
-import me.notaeris.cobra.util.PlayerUtil;
 import me.notaeris.cobra.util.command.Command;
 import me.notaeris.cobra.util.command.CommandArgs;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ReportCommand {
@@ -29,7 +27,7 @@ public class ReportCommand {
                 if(Cooldown.hasCooldown(player.getUniqueId(), "report")) {
                     player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.cooldown.message")));
                 } else {
-                    CobraPlugin.get().getConfig().getStringList("command.report.format").forEach(string -> PlayerUtil.getOnlinePlayers().forEach(target2 -> {
+                    CobraPlugin.get().getConfig().getStringList("command.report.format").forEach(string -> Bukkit.getOnlinePlayers().forEach(target2 -> {
                         if(target2.hasPermission("cobra.staff")) {
                             target2.sendMessage(CC.translate(string
                                     .replace("%server%", CobraPlugin.get().getConfig().getString("server_name")))

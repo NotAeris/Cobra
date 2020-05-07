@@ -16,6 +16,7 @@ public class HealCommand {
         if(args.length() == 0) {
             player.setHealth(20.0);
             player.setFoodLevel(20);
+            player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.heal.player")));
         } else {
             Player target = Bukkit.getPlayer(args.getArgs(0));
@@ -24,6 +25,7 @@ public class HealCommand {
             } else {
                 target.setHealth(20.0);
                 target.setFoodLevel(20);
+                target.getActivePotionEffects().forEach(effect -> target.removePotionEffect(effect.getType()));
                 target.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.heal.player")));
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.heal.target"))
                         .replace("%target%", target.getName()));
