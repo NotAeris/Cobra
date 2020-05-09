@@ -9,8 +9,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class PlayerListener implements Listener {
 
@@ -54,6 +58,23 @@ public class PlayerListener implements Listener {
                             .replace("%player%", profile.getPlayer().getName()));
                 }
             }));
+        }
+    }
+
+    private final List<String> BLOCKED_COMMANDS = Arrays.asList(
+            "/me",
+            "/bukkit:me",
+            "/minecraft:me",
+            "//calc"
+    );
+
+    @EventHandler
+    public void onCommandProcess(PlayerCommandPreprocessEvent event) {
+        for(String blockedCommand : BLOCKED_COMMANDS) {
+            if(event.getMessage().startsWith(blockedCommand)) {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("cannot_execute_command")));
+            }
         }
     }
 

@@ -8,6 +8,7 @@ mongo:
 executor: "&cThis command is only executable by players."
 no_permission: "&cNo permission."
 player_offline: "&cThis player is offline."
+cannot_execute_command: "&cYou can't execute this command."
 
 command:
   discord: "&eDiscord: &fdiscord.gg/lol"
