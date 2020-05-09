@@ -106,6 +106,10 @@ command:
         material: BOOK
         slot: 1
         name: "&6Inspector"
+      freezer:
+        material: ICE
+        slot: 4
+        name: "&6Freezer"
       vanish:
         material: INK_SACK
         amount: 1
@@ -116,10 +120,32 @@ command:
   invsee:
     usage: "&cUsage: /%command% <player>"
     message: "&eOpening inventory of: &b%target%"
-
-invsee:
-  size: 45
-  name: "&7Inventory &7of &b%target%"
+    size: 45
+    name: "&7Inventory of player"
+  freeze:
+    usage: "&cUsage: /%command% <player>"
+    target:
+      frozen: "&cYou have been frozen."
+      unfrozen: "&aYou have been unfrozen."
+      is_frozen: "&cThis player is currently frozen."
+    player:
+      froze: "&eYou froze &f%target%&e."
+      unfroze: "&eYou unfroze &f%target%&e."
+    message:
+      - ""
+      - "&f\u2588\u2588\u2588\u2588&c\u2588&f\u2588\u2588\u2588\u2588"
+      - "&f\u2588\u2588\u2588&c\u2588&6\u2588&c\u2588&f\u2588\u2588\u2588"
+      - "&f\u2588\u2588&c\u2588&6\u2588&0\u2588&6\u2588&c\u2588&f\u2588\u2588 &eYou have been frozen by a staff member."
+      - "&f\u2588\u2588&c\u2588&6\u2588&0\u2588&6\u2588&c\u2588&f\u2588\u2588 &eIf you log out, you will be &4&lBANNED&e."
+      - "&f\u2588&c\u2588&6\u2588\u2588&0\u2588&6\u2588\u2588&c\u2588&f\u2588 &ePlease download Discord and join"
+      - "&f\u2588&c\u2588&6\u2588\u2588\u2588\u2588\u2588&c\u2588&f\u2588 &7https://discord.gg/example"
+      - "&c\u2588&6\u2588\u2588\u2588&0\u2588&6\u2588\u2588\u2588&c\u2588"
+      - "&c\u2588&6\u2588\u2588\u2588&0\u2588&6\u2588\u2588\u2588&c\u2588"
+      - ""
+    quit_message:
+      - ""
+      - "&4&l%player% has quit whilst frozen"
+      - ""
 
 staffmode:
   you_cannot_do_this: "&c&lYou cannot do this whilst in StaffMode!"

@@ -2,6 +2,7 @@ package me.notaeris.cobra;
 
 import me.notaeris.cobra.command.*;
 import me.notaeris.cobra.listener.ChatListener;
+import me.notaeris.cobra.listener.FreezeListener;
 import me.notaeris.cobra.listener.PlayerListener;
 import me.notaeris.cobra.listener.StaffModeListener;
 import me.notaeris.cobra.util.MongoDB;
@@ -18,7 +19,7 @@ public class CobraPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        saveDefaultConfig();
+        this.saveDefaultConfig();
 
         this.mongoDB = new MongoDB();
         this.framework = new CommandFramework(this);
@@ -48,7 +49,8 @@ public class CobraPlugin extends JavaPlugin {
                 new ReportCommand(),
                 new ClearCommand(),
                 new StaffModeCommand(),
-                new InvseeCommand()
+                new InvseeCommand(),
+                new FreezeCommand()
         ).forEach(command -> this.framework.registerCommands(command));
     }
 
@@ -56,7 +58,8 @@ public class CobraPlugin extends JavaPlugin {
         Arrays.asList(
                 new PlayerListener(),
                 new ChatListener(),
-                new StaffModeListener()
+                new StaffModeListener(),
+                new FreezeListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
 }

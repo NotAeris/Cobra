@@ -22,8 +22,7 @@ public class InvseeCommand {
             if(target == null) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             } else {
-                Inventory inventory = Bukkit.createInventory(null, CobraPlugin.get().getConfig().getInt("invsee.size"), CC.translate(CobraPlugin.get().getConfig().getString("invsee.name"))
-                        .replace("%target%", target.getName()));
+                Inventory inventory = Bukkit.createInventory(null, CobraPlugin.get().getConfig().getInt("command.invsee.size"), CC.translate(CobraPlugin.get().getConfig().getString("command.invsee.name")));
                 player.openInventory(inventory);
 
                 if(target.getInventory().getHelmet() != null) {

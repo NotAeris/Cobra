@@ -51,17 +51,28 @@ public class StaffModeListener implements Listener {
         Player player = event.getPlayer();
         Player target = (Player) event.getRightClicked();
 
-        player.performCommand("invsee " + target.getName());
-        player.updateInventory();
+        if(!(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null)) {
+            if(CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.inspector.name")).equalsIgnoreCase(player.getItemInHand().getItemMeta().getDisplayName())) {
+                player.performCommand("invsee " + target.getName());
+                player.updateInventory();
+            }
+        }
+        if(!(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null)) {
+            if(CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.freezer.name")).equalsIgnoreCase(player.getItemInHand().getItemMeta().getDisplayName())) {
+                player.performCommand("freeze " + target.getName());
+            }
+        }
     }
 
     @EventHandler
-    public void onDamage(EntityDamageByEntityEvent event) {
-        Entity entity = event.getDamager();
+    public void onDamageByEntity(EntityDamageByEntityEvent event) {
+        if(event.getDamager() instanceof Player) {
+            Player player = (Player) event.getDamager();
 
-        if(entity instanceof Player && StaffModeCommand.staffmode.contains(entity)) {
-            event.setCancelled(true);
-            entity.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.you_cannot_do_this")));
+            if(StaffModeCommand.staffmode.contains(player)) {
+                event.setCancelled(true);
+                player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.you_cannot_do_this")));
+            }
         }
     }
 
@@ -77,16 +88,6 @@ public class StaffModeListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        Player player = event.getPlayer();
-
-        if(StaffModeCommand.staffmode.contains(player)) {
-            event.setCancelled(true);
-            player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.you_cannot_do_this")));
-        }
-    }
-
-    @EventHandler
-    public void onPickupItem(PlayerPickupItemEvent event) {
         Player player = event.getPlayer();
 
         if(StaffModeCommand.staffmode.contains(player)) {

@@ -16,6 +16,6 @@ public class ListCommand {
         CobraPlugin.get().getConfig().getStringList("command.list").forEach(string -> args.getSender().sendMessage(CC.translate(string
                 .replace("%online_players%", Integer.toString(Bukkit.getOnlinePlayers().size())))
                 .replace("%max_players%", Integer.toString(Bukkit.getMaxPlayers()))
-                .replace("%playerNames%", Bukkit.getOnlinePlayers().parallelStream().map(Player::getName).collect(Collectors.joining("&f, ")))));
+                .replace("%playerNames%", Bukkit.getOnlinePlayers().parallelStream().map(Player::getName).collect(Collectors.joining(", ")))));
     }
 }
