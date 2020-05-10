@@ -110,6 +110,8 @@ command:
     player:
       froze: "&eYou froze &f%target%&e."
       unfroze: "&eYou unfroze &f%target%&e."
+  setspawn: "&aYou have updated the player spawn point."
+  spawn: "&aYou have teleported to spawn."
 
 staffmode:
   you_cannot_do_this: "&c&lYou cannot do this whilst in StaffMode!"

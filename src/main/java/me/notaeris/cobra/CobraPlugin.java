@@ -52,7 +52,8 @@ public class CobraPlugin extends JavaPlugin {
                 new ClearCommand(),
                 new StaffModeCommand(),
                 new InvseeCommand(),
-                new FreezeCommand()
+                new FreezeCommand(),
+                new SpawnCommands()
         ).forEach(command -> this.framework.registerCommands(command));
     }
 
