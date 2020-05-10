@@ -1,9 +1,7 @@
 package me.notaeris.cobra.profile;
 
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.UpdateOptions;
 import lombok.Getter;
-import me.notaeris.cobra.util.MongoDB;
+import me.notaeris.cobra.CobraPlugin;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -22,7 +20,7 @@ public class Profile {
     }
 
     private void load() {
-        Document document = MongoDB.profiles.find(Filters.eq("uuid", this.uuid.toString())).first();
+        Document document = CobraPlugin.get().getMongoDB().getProfiles(uuid);
 
         if(document == null) {
             this.save();
@@ -30,7 +28,7 @@ public class Profile {
     }
 
     private void save() {
-        Document document = MongoDB.profiles.find(Filters.eq("uuid", this.uuid.toString())).first();
+        Document document = CobraPlugin.get().getMongoDB().getProfiles(uuid);
 
         if(document == null) {
             document = new Document();
@@ -39,7 +37,7 @@ public class Profile {
         document.put("uuid", this.uuid.toString());
         document.put("name", this.getPlayer().getName());
 
-        MongoDB.profiles.replaceOne(Filters.eq("uuid", this.uuid.toString()), document, new UpdateOptions().upsert(true));
+        CobraPlugin.get().getMongoDB().replaceOne(uuid, document);
     }
 
     public Player getPlayer() {

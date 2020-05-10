@@ -1,7 +1,6 @@
 package me.notaeris.cobra.listener;
 
 import me.notaeris.cobra.CobraPlugin;
-import me.notaeris.cobra.command.InvseeCommand;
 import me.notaeris.cobra.profile.Profile;
 import me.notaeris.cobra.util.CC;
 import org.bukkit.Bukkit;
@@ -34,16 +33,16 @@ public class PlayerListener implements Listener {
                 }
             }));
         }
-        if(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.teleporter.slot")) == null
-                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null
-                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.freezer.slot")).getItemMeta().getDisplayName() == null
-                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.vanish.slot")).getItemMeta().getDisplayName() == null) {
+        if(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.teleporter.slot")) == null
+                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null
+                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.freezer.slot")).getItemMeta().getDisplayName() == null
+                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.slot")).getItemMeta().getDisplayName() == null) {
             return;
         } else {
-            if(CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.teleporter.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.teleporter.slot")).getItemMeta().getDisplayName())
-                    || CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.inspector.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.inspector.slot")).getItemMeta().getDisplayName())
-                    || CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.freezer.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.freezer.slot")).getItemMeta().getDisplayName())
-                    || CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.item.vanish.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("command.staffmode.item.vanish.slot")).getItemMeta().getDisplayName())) {
+            if(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.teleporter.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.teleporter.slot")).getItemMeta().getDisplayName())
+                    || CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.inspector.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.inspector.slot")).getItemMeta().getDisplayName())
+                    || CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.freezer.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.freezer.slot")).getItemMeta().getDisplayName())
+                    || CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.vanish.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.slot")).getItemMeta().getDisplayName())) {
                 player.getInventory().clear();
                 player.setGameMode(GameMode.SURVIVAL);
             }

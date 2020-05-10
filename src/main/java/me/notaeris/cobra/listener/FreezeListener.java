@@ -1,7 +1,6 @@
 package me.notaeris.cobra.listener;
 
 import me.notaeris.cobra.CobraPlugin;
-import me.notaeris.cobra.command.FreezeCommand;
 import me.notaeris.cobra.util.CC;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
@@ -25,22 +24,22 @@ public class FreezeListener implements Listener {
     public void onMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        if(FreezeCommand.frozen.contains(player)) {
+        if(CobraPlugin.get().getAPI().getFreeze(player)) {
             event.setTo(event.getFrom());
-            CobraPlugin.get().getConfig().getStringList("command.freeze.message").forEach(string -> player.sendMessage(CC.translate(string)));
+            CobraPlugin.get().getConfig().getStringList("freeze.message").forEach(string -> player.sendMessage(CC.translate(string)));
         }
     }
 
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
-        if(FreezeCommand.frozen.contains(event.getPlayer())) {
+        if(CobraPlugin.get().getAPI().getFreeze(event.getPlayer())) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onPickupItem(PlayerPickupItemEvent event) {
-        if(FreezeCommand.frozen.contains(event.getPlayer())) {
+        if(CobraPlugin.get().getAPI().getFreeze(event.getPlayer())) {
             event.setCancelled(true);
         }
     }
@@ -49,9 +48,9 @@ public class FreezeListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
 
-        if(FreezeCommand.frozen.contains(player)) {
+        if(CobraPlugin.get().getAPI().getFreeze(player)) {
             event.setCancelled(true);
-            CobraPlugin.get().getConfig().getStringList("command.freeze.message").forEach(string -> player.sendMessage(CC.translate(string)));
+            CobraPlugin.get().getConfig().getStringList("freeze.message").forEach(string -> player.sendMessage(CC.translate(string)));
         }
     }
 
@@ -59,9 +58,9 @@ public class FreezeListener implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
         Player player = event.getPlayer();
 
-        if(FreezeCommand.frozen.contains(player)) {
+        if(CobraPlugin.get().getAPI().getFreeze(player)) {
             event.setCancelled(true);
-            CobraPlugin.get().getConfig().getStringList("command.freeze.message").forEach(string -> player.sendMessage(CC.translate(string)));
+            CobraPlugin.get().getConfig().getStringList("freeze.message").forEach(string -> player.sendMessage(CC.translate(string)));
         }
     }
 
@@ -69,7 +68,7 @@ public class FreezeListener implements Listener {
     public void onEntityDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
 
-        if(entity instanceof Player && FreezeCommand.frozen.contains(entity)) {
+        if(entity instanceof Player && CobraPlugin.get().getAPI().getFreeze(entity)) {
             event.setCancelled(true);
         }
     }
@@ -80,9 +79,9 @@ public class FreezeListener implements Listener {
             Entity entity = event.getEntity();
             Player damager = (Player) event.getDamager();
 
-            if(FreezeCommand.frozen.contains(entity)) {
+            if(CobraPlugin.get().getAPI().getFreeze(entity)) {
                 event.setCancelled(true);
-                damager.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.freeze.target.is_frozen")));
+                damager.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("freeze.target.is_frozen")));
             }
         }
     }
@@ -91,7 +90,7 @@ public class FreezeListener implements Listener {
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
         Player player = (Player) event.getEntity();
 
-        if(FreezeCommand.frozen.contains(player)) {
+        if(CobraPlugin.get().getAPI().getFreeze(player)) {
             event.setCancelled(true);
         }
     }
@@ -100,7 +99,7 @@ public class FreezeListener implements Listener {
     public void onClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if(FreezeCommand.frozen.contains(player)) {
+        if(CobraPlugin.get().getAPI().getFreeze(player)) {
             event.setCancelled(true);
         }
     }
@@ -109,8 +108,8 @@ public class FreezeListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
-        if(FreezeCommand.frozen.contains(player)) {
-            CobraPlugin.get().getConfig().getStringList("command.freeze.quit_message").forEach(string -> Bukkit.getOnlinePlayers().forEach(target -> {
+        if(CobraPlugin.get().getAPI().getFreeze(player)) {
+            CobraPlugin.get().getConfig().getStringList("freeze.quit_message").forEach(string -> Bukkit.getOnlinePlayers().forEach(target -> {
                 if(target.hasPermission("cobra.staff")) {
                     target.sendMessage(CC.translate(string
                             .replace("%player%", player.getName())));

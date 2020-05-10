@@ -17,7 +17,7 @@ public class SoundsCommand {
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
 
-        if(sounds.contains(player)) {
+        if(CobraPlugin.get().getAPI().getMessageSounds(player)) {
             sounds.remove(player);
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.sounds.enabled")));
         } else {

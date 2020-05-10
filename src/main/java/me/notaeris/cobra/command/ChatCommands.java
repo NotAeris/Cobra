@@ -26,7 +26,7 @@ public class ChatCommands {
                 Bukkit.broadcastMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.chat.clear.message")));
             }
             if(args.getArgs(0).equalsIgnoreCase("mute")) {
-                if(!chatToggled) {
+                if(CobraPlugin.get().getAPI().getChat()) {
                     chatToggled = true;
                     Bukkit.broadcastMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.chat.mute.disabled")));
                 } else {

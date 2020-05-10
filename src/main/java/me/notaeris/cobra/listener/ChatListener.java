@@ -1,7 +1,6 @@
 package me.notaeris.cobra.listener;
 
 import me.notaeris.cobra.CobraPlugin;
-import me.notaeris.cobra.command.ChatCommands;
 import me.notaeris.cobra.util.CC;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,7 +13,7 @@ public class ChatListener implements Listener {
     public void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
 
-        if(!ChatCommands.chatToggled) {
+        if(CobraPlugin.get().getAPI().getChat()) {
             event.setCancelled(false);
         } else {
             if(player.hasPermission("cobra.staff")) {

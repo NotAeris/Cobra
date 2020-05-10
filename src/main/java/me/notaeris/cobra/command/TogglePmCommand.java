@@ -17,7 +17,7 @@ public class TogglePmCommand {
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
 
-        if(togglepm.contains(player)) {
+        if(CobraPlugin.get().getAPI().getTogglePm(player)) {
             togglepm.remove(player);
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.togglepm.enabled")));
         } else {

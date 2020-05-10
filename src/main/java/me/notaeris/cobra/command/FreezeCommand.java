@@ -5,13 +5,14 @@ import me.notaeris.cobra.util.CC;
 import me.notaeris.cobra.util.command.Command;
 import me.notaeris.cobra.util.command.CommandArgs;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
 public class FreezeCommand {
 
-    public static ArrayList<Player> frozen = new ArrayList<>();
+    public static ArrayList<Entity> frozen = new ArrayList<>();
 
     @Command(name = "freeze", aliases = { "ss" }, permission = "cobra.command.freeze", playerOnly = true)
     public void execute(CommandArgs args) {

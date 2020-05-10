@@ -14,15 +14,17 @@ import java.util.Arrays;
 
 public class CobraPlugin extends JavaPlugin {
 
-    protected MongoDB mongoDB;
+    protected MongoDB db;
     protected CommandFramework framework;
+    protected CobraAPI api;
 
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
 
-        this.mongoDB = new MongoDB();
+        this.db = new MongoDB();
         this.framework = new CommandFramework(this);
+        this.api = new CobraAPI();
         this.registerCommands();
         this.registerListeners();
     }
@@ -61,5 +63,13 @@ public class CobraPlugin extends JavaPlugin {
                 new StaffModeListener(),
                 new FreezeListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
+    }
+
+    public MongoDB getMongoDB() {
+        return this.db;
+    }
+
+    public CobraAPI getAPI() {
+        return this.api;
     }
 }
