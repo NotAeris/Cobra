@@ -14,9 +14,9 @@ import java.util.Arrays;
 
 public class CobraPlugin extends JavaPlugin {
 
-    protected MongoDB db;
-    protected CommandFramework framework;
-    protected CobraAPI api;
+    private MongoDB db;
+    private CommandFramework framework;
+    private CobraAPI api;
 
     @Override
     public void onEnable() {
