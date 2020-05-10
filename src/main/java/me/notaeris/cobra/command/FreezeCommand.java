@@ -26,7 +26,7 @@ public class FreezeCommand {
             if(target == null) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             } else {
-                if(!frozen.contains(target)) {
+                if(!CobraPlugin.get().getAPI().getFreeze(target)) {
                     frozen.add(target);
                     target.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.freeze.target.frozen")));
                     player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.freeze.player.froze"))

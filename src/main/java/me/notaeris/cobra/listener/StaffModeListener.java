@@ -24,7 +24,7 @@ public class StaffModeListener implements Listener {
 
         if(event.getItem() != null) {
             if(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.vanish.name")).equalsIgnoreCase(player.getItemInHand().getItemMeta().getDisplayName())) {
-                if(VanishCommand.vanish.contains(player)) {
+                if(CobraPlugin.get().getAPI().getVanish(player)) {
                     CobraPlugin.get().getAPI().setVanished(player, false);
                     ItemStack vanish = new ItemBuilder(Material.getMaterial(CobraPlugin.get().getConfig().getString("staffmode.item.vanish.material")), CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.amount"), (short) CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.value"))
                             .setName(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.vanish.name")))
