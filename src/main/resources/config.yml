@@ -137,7 +137,7 @@ staffmode:
       value2: 10
 
 freeze:
-  is_frozen: "&cThis player is currently frozen."
+  target_is_frozen: "&cThis player is currently frozen."
   message:
     - ""
     - "&f\u2588\u2588\u2588\u2588&c\u2588&f\u2588\u2588\u2588\u2588"

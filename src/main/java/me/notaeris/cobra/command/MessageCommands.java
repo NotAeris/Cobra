@@ -26,14 +26,14 @@ public class MessageCommands {
             if(target == null) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             }
-            if(TogglePmCommand.togglepm.contains(player) || TogglePmCommand.togglepm.contains(target)) {
+            if(CobraPlugin.get().getAPI().getTogglePm(player) || CobraPlugin.get().getAPI().getTogglePm(target)) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.togglepm.messages_disabled")));
             } else {
                 CobraPlugin.get().getConfig().getStringList("command.message.to").forEach(string ->
                         player.sendMessage(CC.translate(string
                                 .replace("%target%", target.getName()))
                                 .replace("%message%", message)));
-                if(SoundsCommand.sounds.contains(player)) {
+                if(CobraPlugin.get().getAPI().getSounds(player)) {
                     CobraPlugin.get().getConfig().getStringList("command.message.from").forEach(string ->
                             target.sendMessage(CC.translate(string
                                     .replace("%player%", player.getName()))
@@ -58,14 +58,14 @@ public class MessageCommands {
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.reply.usage"))
                     .replace("%command%", args.getLabel()));
         } else {
-            if(TogglePmCommand.togglepm.contains(player) || TogglePmCommand.togglepm.contains(this.target)) {
+            if(CobraPlugin.get().getAPI().getTogglePm(player) || CobraPlugin.get().getAPI().getTogglePm(target)) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.togglepm.messages_disabled")));
             } else {
                 CobraPlugin.get().getConfig().getStringList("command.message.to").forEach(string ->
                         player.sendMessage(CC.translate(string
                                 .replace("%target%", this.target.getName()))
                                 .replace("%message%", message)));
-                if(SoundsCommand.sounds.contains(player)) {
+                if(CobraPlugin.get().getAPI().getSounds(player)) {
                     CobraPlugin.get().getConfig().getStringList("command.message.from").forEach(string ->
                             target.sendMessage(CC.translate(string
                                     .replace("%player%", player.getName()))

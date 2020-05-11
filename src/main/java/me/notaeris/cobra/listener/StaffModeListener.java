@@ -1,7 +1,6 @@
 package me.notaeris.cobra.listener;
 
 import me.notaeris.cobra.CobraPlugin;
-import me.notaeris.cobra.command.VanishCommand;
 import me.notaeris.cobra.util.CC;
 import me.notaeris.cobra.util.ItemBuilder;
 import org.bukkit.Material;

@@ -10,23 +10,19 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-
 public class StaffModeCommand {
-
-    public static ArrayList<Player> staffmode = new ArrayList<>();
 
     @Command(name = "staffmode", aliases = { "staff", "mod", "modmode", "h" }, permission = "cobra.command.staffmode", playerOnly = true)
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
 
         if(CobraPlugin.get().getAPI().getStaffMode(player)) {
-            staffmode.remove(player);
+            CobraPlugin.get().getAPI().setStaffModeDisabled(player);
             player.getInventory().clear();
             player.setGameMode(GameMode.SURVIVAL);
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.disabled")));
         } else {
-            staffmode.add(player);
+            CobraPlugin.get().getAPI().setStaffModeEnabled(player);
             player.getInventory().clear();
             player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
             player.setGameMode(GameMode.CREATIVE);

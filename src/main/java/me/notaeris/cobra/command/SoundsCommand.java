@@ -6,22 +6,17 @@ import me.notaeris.cobra.util.command.Command;
 import me.notaeris.cobra.util.command.CommandArgs;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SoundsCommand {
-
-    public static List<Player> sounds = new ArrayList<>();
 
     @Command(name = "sounds", playerOnly = true)
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
 
-        if(CobraPlugin.get().getAPI().getMessageSounds(player)) {
-            sounds.remove(player);
+        if(CobraPlugin.get().getAPI().getSounds(player)) {
+            CobraPlugin.get().getAPI().setSoundsDisabled(player);
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.sounds.enabled")));
         } else {
-            sounds.add(player);
+            CobraPlugin.get().getAPI().setSoundsEnabled(player);
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.sounds.disabled")));
         }
     }

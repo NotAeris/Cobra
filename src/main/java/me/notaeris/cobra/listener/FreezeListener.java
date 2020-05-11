@@ -81,7 +81,7 @@ public class FreezeListener implements Listener {
 
             if(CobraPlugin.get().getAPI().getFreeze(entity)) {
                 event.setCancelled(true);
-                damager.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("freeze.target.is_frozen")));
+                damager.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("freeze.target_is_frozen")));
             }
         }
     }

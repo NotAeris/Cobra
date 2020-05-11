@@ -9,8 +9,6 @@ import org.bukkit.entity.Player;
 
 public class ChatCommands {
 
-    public static boolean chatToggled;
-
     @Command(name = "chat", permission = "cobra.command.clearchat")
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
@@ -27,10 +25,10 @@ public class ChatCommands {
             }
             if(args.getArgs(0).equalsIgnoreCase("mute")) {
                 if(CobraPlugin.get().getAPI().getChat()) {
-                    chatToggled = true;
+                    CobraPlugin.get().getAPI().setChatEnabled();
                     Bukkit.broadcastMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.chat.mute.disabled")));
                 } else {
-                    chatToggled = false;
+                    CobraPlugin.get().getAPI().setChatDisabled();
                     Bukkit.broadcastMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.chat.mute.enabled")));
                 }
             }
