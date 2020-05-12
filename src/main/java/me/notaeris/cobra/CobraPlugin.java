@@ -24,7 +24,7 @@ public class CobraPlugin extends JavaPlugin {
 
         this.framework = new CommandFramework(this);
         this.api = new CobraAPI();
-        this.cooldown = new Cooldown(null, null, 0);
+        this.cooldown = new Cooldown();
         this.registerCommands();
         this.registerListeners();
     }
@@ -68,5 +68,9 @@ public class CobraPlugin extends JavaPlugin {
 
     public CobraAPI getAPI() {
         return this.api;
+    }
+
+    public Cooldown getCooldown() {
+        return this.cooldown;
     }
 }

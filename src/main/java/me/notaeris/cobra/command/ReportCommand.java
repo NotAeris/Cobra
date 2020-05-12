@@ -24,7 +24,7 @@ public class ReportCommand {
             if(target == null) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             } else {
-                if(Cooldown.hasCooldown(player.getUniqueId(), "report")) {
+                if(CobraPlugin.get().getCooldown().hasCooldown(player.getUniqueId(), "report")) {
                     player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.cooldown.message")));
                 } else {
                     CobraPlugin.get().getConfig().getStringList("command.report.format").forEach(string -> Bukkit.getOnlinePlayers().forEach(target2 -> {
@@ -37,8 +37,7 @@ public class ReportCommand {
                         }
                     }));
                     player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.sent")));
-                    Cooldown cooldown = new Cooldown(player.getUniqueId(), "report", CobraPlugin.get().getConfig().getInt("command.report.cooldown.time"));
-                    cooldown.start();
+                    CobraPlugin.get().getCooldown().addCooldown(player.getUniqueId(), "report", CobraPlugin.get().getConfig().getInt("command.report.cooldown.time"));
                 }
             }
         }

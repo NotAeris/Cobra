@@ -5,50 +5,39 @@ import java.util.UUID;
 
 public class Cooldown {
 
-    private static final HashMap<String, Cooldown> cooldowns = new HashMap<String, Cooldown>();
-    private static long start;
-    private final int timeInSeconds;
-    private final UUID uuid;
-    private final String cooldownName;
+    private final HashMap<String, Cooldown> cooldowns = new HashMap<>();
+    private long start;
+    private int seconds;
 
-    public Cooldown(UUID uuid, String cooldownName, int timeInSeconds) {
-        this.uuid = uuid;
-        this.cooldownName = cooldownName;
-        this.timeInSeconds = timeInSeconds;
+    public void addCooldown(UUID uuid, String name, int seconds) {
+        this.start = System.currentTimeMillis();
+        this.cooldowns.put(uuid.toString() + name, this);
+        this.seconds = seconds;
     }
 
-    public static boolean hasCooldown(UUID id, String cooldownName) {
-        if (getRemaining(id, cooldownName) >= 1) {
+    public boolean hasCooldown(UUID uuid, String name) {
+        if(getRemaining(uuid, name) >= 1) {
             return true;
         }
-        stop(id, cooldownName);
+        this.cooldowns.remove(uuid + name);
         return false;
     }
 
-    private static Cooldown getCooldown(UUID id, String cooldownName) {
-        return cooldowns.get(id.toString() + cooldownName);
+    private Cooldown getCooldown(UUID uuid, String name) {
+        return cooldowns.get(uuid.toString() + name);
     }
 
-    public static int getRemaining(UUID id, String cooldownName) {
-        Cooldown cooldown = getCooldown(id, cooldownName);
+    public int getRemaining(UUID uuid, String name) {
+        Cooldown cooldown = getCooldown(uuid, name);
         int f = -1;
 
         if (cooldown != null) {
             long now = System.currentTimeMillis();
-            long cooldownTime = start;
-            int totalTime = cooldown.timeInSeconds;
+            long cooldownTime = this.start;
+            int totalTime = cooldown.seconds;
             int r = (int) (now - cooldownTime) / 1000;
             f = (r - totalTime) * -1;
         }
         return f;
-    }
-
-    public void start() {
-        start = System.currentTimeMillis();
-        cooldowns.put(this.uuid.toString() + this.cooldownName, this);
-    }
-
-    private static void stop(UUID id, String cooldownName) {
-        cooldowns.remove(id + cooldownName);
     }
 }
