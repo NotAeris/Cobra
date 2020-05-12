@@ -5,6 +5,7 @@ import me.notaeris.cobra.listener.ChatListener;
 import me.notaeris.cobra.listener.FreezeListener;
 import me.notaeris.cobra.listener.PlayerListener;
 import me.notaeris.cobra.listener.StaffModeListener;
+import me.notaeris.cobra.util.Cooldown;
 import me.notaeris.cobra.util.command.CommandFramework;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +16,7 @@ public class CobraPlugin extends JavaPlugin {
 
     private CommandFramework framework;
     private CobraAPI api;
+    private Cooldown cooldown;
 
     @Override
     public void onEnable() {
@@ -22,6 +24,7 @@ public class CobraPlugin extends JavaPlugin {
 
         this.framework = new CommandFramework(this);
         this.api = new CobraAPI();
+        this.cooldown = new Cooldown(null, null, 0);
         this.registerCommands();
         this.registerListeners();
     }

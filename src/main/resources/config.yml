@@ -1,10 +1,3 @@
-mongo:
-  host: 127.0.0.1
-  port: 27017
-  database:
-    name: "cobra-core"
-    collection: "profiles"
-
 executor: "&cThis command is only executable by players."
 no_permission: "&cNo permission."
 player_offline: "&cThis player is offline."

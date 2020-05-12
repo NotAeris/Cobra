@@ -4,6 +4,7 @@ import me.notaeris.cobra.CobraPlugin;
 import me.notaeris.cobra.util.CC;
 import me.notaeris.cobra.util.ItemBuilder;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,15 +46,15 @@ public class StaffModeListener implements Listener {
     @EventHandler
     public void onInteractEntity(PlayerInteractEntityEvent event) {
         Player player = event.getPlayer();
-        Player target = (Player) event.getRightClicked();
+        Entity target = event.getRightClicked();
 
-        if(!(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null)) {
+        if(target instanceof Player && !(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null)) {
             if(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.inspector.name")).equalsIgnoreCase(player.getItemInHand().getItemMeta().getDisplayName())) {
                 player.performCommand("invsee " + target.getName());
                 player.updateInventory();
             }
         }
-        if(!(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null)) {
+        if(target instanceof Player && !(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null)) {
             if(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.freezer.name")).equalsIgnoreCase(player.getItemInHand().getItemMeta().getDisplayName())) {
                 player.performCommand("freeze " + target.getName());
             }
