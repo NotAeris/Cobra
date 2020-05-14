@@ -1,3 +1,11 @@
+mongo:
+  host: 127.0.0.1
+  port: 27017
+  database:
+    name: "cobra-core"
+    collection:
+      profiles: "profiles"
+
 executor: "&cThis command is only executable by players."
 no_permission: "&cNo permission."
 player_offline: "&cThis player is offline."
@@ -100,24 +108,6 @@ command:
       unfroze: "&eYou unfroze &f%target%&e."
   setspawn: "&aYou have updated the player spawn point."
   spawn: "&aYou have teleported to spawn."
-  rank:
-    usage:
-      - "&7&m---------------------------------------"
-      - "&e&lRank Commands"
-      - ""
-      - "&e/rank create <name>"
-      - "&e/rank delete <name>"
-      - "&e/rank prefix <name> <prefix>"
-      - "&e/rank list"
-      - "&7&m---------------------------------------"
-    create:
-      usage: "&cUsage: /%command% create <name>"
-      already_exists: "&cThat rank already exists."
-      message: "&aYou have created rank %rank%&a."
-    set:
-      usage: "&cUsage: /%command% set <player> <rank>"
-      target: "&aYou have been given rank %rank%."
-      player: "&aYou have given &f%player% %rank%&a."
 
 staffmode:
   you_cannot_do_this: "&c&lYou cannot do this whilst in StaffMode!"

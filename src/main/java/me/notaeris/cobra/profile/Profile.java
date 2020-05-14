@@ -1,13 +1,10 @@
 package me.notaeris.cobra.profile;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-@Getter @Setter
 public class Profile {
 
     private final UUID uuid;
@@ -15,14 +12,15 @@ public class Profile {
     /**
      * main constructor
      *
-     * @param uuid the uuid of the player
+     * @param uuid uuid of player
      */
     public Profile(UUID uuid) {
         this.uuid = uuid;
     }
 
     /**
-     * get a player
+     * get the player
+     *
      * @return the player
      */
     public Player getPlayer() {
