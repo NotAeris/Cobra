@@ -13,18 +13,42 @@ public class ItemBuilder {
 
     private final ItemStack itemStack;
 
+    /**
+     * constructor
+     *
+     * @param material item material
+     * @param amount item amount
+     */
     public ItemBuilder(Material material, int amount) {
         itemStack = new ItemStack(material, amount);
     }
 
+    /**
+     * constructor
+     *
+     * @param material item material
+     */
     public ItemBuilder(Material material) {
         this(material, 1);
     }
 
+    /**
+     * constructor
+     *
+     * @param material item material
+     * @param amount item amount
+     * @param value item value
+     */
     public ItemBuilder(Material material, int amount, short value) {
         itemStack = new ItemStack(material, amount, value);
     }
 
+    /**
+     * set the name of a item
+     *
+     * @param name item name
+     * @return the item
+     */
     public ItemBuilder setName(String name) {
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(name);
@@ -32,6 +56,12 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * set the lore of a item
+     *
+     * @param lore item lore
+     * @return the item
+     */
     public ItemBuilder setLore(List<String> lore) {
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setLore(lore);
@@ -39,6 +69,13 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * add a enchant to a item
+     *
+     * @param enchantment add a enchant
+     * @param level add a level
+     * @return the item
+     */
     public ItemBuilder addEnchant(Enchantment enchantment, int level) {
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.addEnchant(enchantment, level, true);
@@ -46,6 +83,12 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * set the color of a item
+     *
+     * @param color item color
+     * @return the item
+     */
     public ItemBuilder setColor(Color color) {
         LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta)itemStack.getItemMeta();
         leatherArmorMeta.setColor(color);
@@ -53,6 +96,11 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * create a itemstack
+     *
+     * @return the itemstack
+     */
     public ItemStack create() {
         return itemStack;
     }

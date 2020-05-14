@@ -19,8 +19,8 @@ command:
       - "&e/chat mute &f- &7Mute the chat."
       - "&7&m---------------------------------------"
     clear:
+      lines: 200
       message: "&ePublic chat has been cleared."
-      lines: 300
     mute:
       enabled: "&ePublic chat has been &aenabled&e."
       disabled: "&ePublic chat has been &cdisabled&e."
@@ -42,14 +42,11 @@ command:
     disabled: "&aVanish &ehas been &cdisabled&6."
   staffchat:
     usage: "&cUsage: /%command% <message...>"
-    format:
-      - "&b[S] &7[%server%&7] &b%player%&7: &f%message%"
+    format: "&b[S] &7[%server%&7] &b%player%&7: &f%message%"
   message:
     usage: "&cUsage: /%command% <player> <message...>"
-    to:
-      - "&7(To %target%&7) %message%"
-    from:
-      - "&7(From %player%&7) %message%"
+    to: "&7(To %target%&7) %message%"
+    from: "&7(From %player%&7) %message%"
     sounds:
       enabled: "&eMessaging sounds have been enabled."
       disabled: "&eMessaging sounds have been disabled."
@@ -71,16 +68,14 @@ command:
   request:
     usage: "&cUsage: /%command% <message...>"
     sent: "&aWe have received your request."
-    format:
-      - "&b[R] &7[%server%] &b%player% &7has requested assistance. &bReason: &7%message%"
+    format: "&b[R] &7[%server%] &b%player% &7has requested assistance. &bReason: &7%message%"
     cooldown:
       time: 120
       message: "&cYou can only make one staff request every 2 minutes."
   report:
     usage: "&cUsage: /%command% <player> <message...>"
     sent: "&aWe have received your report."
-    format:
-      - "&b[R] &7[%server%] &b%target% &7was reported by &b%player%&7. &bReason: &7%message%"
+    format: "&b[R] &7[%server%] &b%target% &7was reported by &b%player%&7. &bReason: &7%message%"
     cooldown:
       time: 120
       message: "&cYou can only make one staff request every 2 minutes."
@@ -105,6 +100,24 @@ command:
       unfroze: "&eYou unfroze &f%target%&e."
   setspawn: "&aYou have updated the player spawn point."
   spawn: "&aYou have teleported to spawn."
+  rank:
+    usage:
+      - "&7&m---------------------------------------"
+      - "&e&lRank Commands"
+      - ""
+      - "&e/rank create <name>"
+      - "&e/rank delete <name>"
+      - "&e/rank prefix <name> <prefix>"
+      - "&e/rank list"
+      - "&7&m---------------------------------------"
+    create:
+      usage: "&cUsage: /%command% create <name>"
+      already_exists: "&cThat rank already exists."
+      message: "&aYou have created rank %rank%&a."
+    set:
+      usage: "&cUsage: /%command% set <player> <rank>"
+      target: "&aYou have been given rank %rank%."
+      player: "&aYou have given &f%player% %rank%&a."
 
 staffmode:
   you_cannot_do_this: "&c&lYou cannot do this whilst in StaffMode!"
@@ -150,7 +163,5 @@ freeze:
 server_name: "Dev"
 
 staff:
-  connect:
-    - "&b[S] &b%player% &fhas &aconnected &fto &b%server%"
-  disconnect:
-    - "&b[S] &b%player% &fhas &cdisconnected &ffrom &b%server%"
+  connect: "&b[S] &b%player% &fhas &aconnected &fto &b%server%"
+  disconnect: "&b[S] &b%player% &fhas &cdisconnected &ffrom &b%server%"

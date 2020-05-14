@@ -13,41 +13,39 @@ public class MessageCommands {
 
     private Player target;
 
-    @Command(name = "message", aliases = { "msg", "m", "t"}, playerOnly = true)
+    @Command(name = "message", aliases = {"msg", "m", "t"}, playerOnly = true)
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
         String message = StringUtils.join(args.getArgs(), ' ', 1, args.length());
 
-        if(args.length() <= 1) {
+        if (args.length() <= 1) {
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.usage"))
                     .replace("%command%", args.getLabel()));
-        } else{
-            target = Bukkit.getPlayer(args.getArgs(0));
-            if(target == null) {
+        } else {
+            this.target = Bukkit.getPlayer(args.getArgs(0));
+            if (this.target == null) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             }
-            if(CobraPlugin.get().getAPI().getTogglePm(player) || CobraPlugin.get().getAPI().getTogglePm(target)) {
+            if (CobraPlugin.get().getAPI().getTogglePm(player) || CobraPlugin.get().getAPI().getTogglePm(this.target)) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.togglepm.messages_disabled")));
             } else {
-                CobraPlugin.get().getConfig().getStringList("command.message.to").forEach(string ->
-                        player.sendMessage(CC.translate(string
-                                .replace("%target%", target.getName()))
-                                .replace("%message%", message)));
-                if(CobraPlugin.get().getAPI().getSounds(player)) {
-                    CobraPlugin.get().getConfig().getStringList("command.message.from").forEach(string ->
-                            target.sendMessage(CC.translate(string
-                                    .replace("%player%", player.getName()))
-                                    .replace("%message%", message)));
+                if (CobraPlugin.get().getAPI().getSounds(player)) {
+                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.to"))
+                            .replace("%target%", this.target.getName())
+                            .replace("%message%", message));
                 } else {
-                    target.playSound(target.getLocation(), Sound.SUCCESSFUL_HIT, 100F, 0F);
-                    CobraPlugin.get().getConfig().getStringList("command.message.from").forEach(string ->
-                            target.sendMessage(CC.translate(string
-                                    .replace("%player%", player.getName()))
-                                    .replace("%message%", message)));
+                    player.playSound(this.target.getLocation(), Sound.SUCCESSFUL_HIT, 100F, 0F);
+                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.to"))
+                            .replace("%target%", this.target.getName())
+                            .replace("%message%", message));
                 }
-            }
+                this.target.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.from"))
+                        .replace("%player%", player.getName())
+                        .replace("%message%", message));
         }
     }
+}
+
 
     @Command(name = "reply", aliases = { "r" }, playerOnly = true)
     public void execute2(CommandArgs args) {
@@ -58,25 +56,22 @@ public class MessageCommands {
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.reply.usage"))
                     .replace("%command%", args.getLabel()));
         } else {
-            if(CobraPlugin.get().getAPI().getTogglePm(player) || CobraPlugin.get().getAPI().getTogglePm(target)) {
+            if(CobraPlugin.get().getAPI().getTogglePm(player) || CobraPlugin.get().getAPI().getTogglePm(this.target)) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.togglepm.messages_disabled")));
             } else {
-                CobraPlugin.get().getConfig().getStringList("command.message.to").forEach(string ->
-                        player.sendMessage(CC.translate(string
-                                .replace("%target%", this.target.getName()))
-                                .replace("%message%", message)));
                 if(CobraPlugin.get().getAPI().getSounds(player)) {
-                    CobraPlugin.get().getConfig().getStringList("command.message.from").forEach(string ->
-                            target.sendMessage(CC.translate(string
-                                    .replace("%player%", player.getName()))
-                                    .replace("%message%", message)));
+                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.to"))
+                            .replace("%target%", this.target.getName())
+                            .replace("%message%", message));
                 } else {
-                    target.playSound(target.getLocation(), Sound.SUCCESSFUL_HIT, 100F, 0F);
-                    CobraPlugin.get().getConfig().getStringList("command.message.from").forEach(string ->
-                            target.sendMessage(CC.translate(string
-                                    .replace("%player%", player.getName()))
-                                    .replace("%message%", message)));
+                    player.playSound(this.target.getLocation(), Sound.SUCCESSFUL_HIT, 100F, 0F);
+                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.to"))
+                            .replace("%target%", this.target.getName())
+                            .replace("%message%", message));
                 }
+                this.target.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.from"))
+                        .replace("%player%", player.getName())
+                        .replace("%message%", message));
             }
         }
     }

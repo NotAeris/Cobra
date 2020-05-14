@@ -4,5 +4,13 @@ import org.bukkit.ChatColor;
 
 public class CC {
 
-    public static String translate(String string) { return ChatColor.translateAlternateColorCodes('&', string); }
+    /**
+     * translates a string
+     *
+     * @param string to be translated
+     * @return the translated string
+     */
+    public static String translate(String string) {
+        return ChatColor.translateAlternateColorCodes('&', string);
+    }
 }
