@@ -4,16 +4,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class CobraAPI {
 
-    private final ArrayList<Player> staffmode = new ArrayList<>();
-    private final ArrayList<Entity> freeze = new ArrayList<>();
-    private final ArrayList<Player> vanish = new ArrayList<>();
-    private final ArrayList<Player> togglepm = new ArrayList<>();
-    private final ArrayList<Player> sounds = new ArrayList<>();
-    private final ArrayList<Player> fly = new ArrayList<>();
+    private final Set<Player> staffmode = new HashSet<>();
+    private final Set<Player> freeze = new HashSet<>();
+    private final Set<Player> vanish = new HashSet<>();
+    private final Set<Player> togglepm = new HashSet<>();
+    private final Set<Player> sounds = new HashSet<>();
+    private final Set<Player> fly = new HashSet<>();
 
     private boolean chatToggled;
 
