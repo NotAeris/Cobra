@@ -22,10 +22,10 @@ public class ChatCommands {
             }
             if(args.getArgs(0).equalsIgnoreCase("mute")) {
                 if(CobraPlugin.get().getAPI().getChat()) {
-                    CobraPlugin.get().getAPI().setChatEnabled();
+                    CobraPlugin.get().getAPI().setChat(true);
                     Bukkit.broadcastMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.chat.mute.disabled")));
                 } else {
-                    CobraPlugin.get().getAPI().setChatDisabled();
+                    CobraPlugin.get().getAPI().setChat(false);
                     Bukkit.broadcastMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.chat.mute.enabled")));
                 }
             }

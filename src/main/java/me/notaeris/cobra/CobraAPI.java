@@ -4,7 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CobraAPI {
 
@@ -15,7 +16,7 @@ public class CobraAPI {
     private final Set<Player> sounds = new HashSet<>();
     private final Set<Player> fly = new HashSet<>();
 
-    private boolean chatToggled;
+    private boolean chat;
 
     /**
      * check if staffmode is toggled
@@ -71,29 +72,6 @@ public class CobraAPI {
      */
     public void setFreezeDisabled(Player player) {
         this.freeze.remove(player);
-    }
-
-    /**
-     * check if the chat is toggled
-     *
-     * @return boolean
-     */
-    public boolean getChat() {
-        return !this.chatToggled;
-    }
-
-    /**
-     * set chat enabled
-     */
-    public void setChatEnabled() {
-        this.chatToggled = true;
-    }
-
-    /**
-     * set chat disabled
-     */
-    public void setChatDisabled() {
-        this.chatToggled = false;
     }
 
     /**
@@ -231,5 +209,23 @@ public class CobraAPI {
      */
     public void setFlyDisabled(Player player) {
         this.fly.remove(player);
+    }
+
+    /**
+     * check if the chat is toggled
+     *
+     * @return boolean
+     */
+    public boolean getChat() {
+        return !this.chat;
+    }
+
+    /**
+     * set the chat true/false
+     *
+     * @param chat the chat
+     */
+    public void setChat(boolean chat) {
+        this.chat = chat;
     }
 }
