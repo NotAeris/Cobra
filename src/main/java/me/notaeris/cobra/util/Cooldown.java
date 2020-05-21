@@ -1,8 +1,11 @@
 package me.notaeris.cobra.util;
 
+import lombok.Setter;
+
 import java.util.HashMap;
 import java.util.UUID;
 
+@Setter
 public class Cooldown {
 
     private final HashMap<String, Cooldown> cooldowns = new HashMap<>();
@@ -45,7 +48,7 @@ public class Cooldown {
      * @return the cooldown
      */
     private Cooldown getCooldown(UUID uuid, String name) {
-        return cooldowns.get(uuid.toString() + name);
+        return this.cooldowns.get(uuid.toString() + name);
     }
 
     /**

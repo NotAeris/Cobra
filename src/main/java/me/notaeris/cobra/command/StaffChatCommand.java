@@ -19,11 +19,18 @@ public class StaffChatCommand {
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.staffchat.usage"))
                     .replace("%command%", args.getLabel()));
         } else {
-            Bukkit.broadcast(CC.translate(CobraPlugin.get().getConfig().getString("command.staffchat.format"))
-                    .replace("%server%", CobraPlugin.get().getConfig().getString("server_name"))
-                    .replace("%player%", player.getName())
-                    .replace("%message%", message),
-                    "cobra.staff");
+            if(CobraPlugin.get().getAPI().getStaffChat(player)) {
+                player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.staffchats.currently_disabled")));
+            } else {
+                CobraPlugin.get().getConfig().getStringList("command.staffchat.format").forEach(string -> Bukkit.getOnlinePlayers().forEach(target -> {
+                    if(target.hasPermission("cobra.staff") && !CobraPlugin.get().getAPI().getStaffChat(target)) {
+                        target.sendMessage(CC.translate(string
+                                .replace("%server%", CobraPlugin.get().getConfig().getString("server_name"))
+                                .replace("%player%", player.getName())
+                                .replace("%message%", message)));
+                    }
+                }));
+            }
         }
     }
 }

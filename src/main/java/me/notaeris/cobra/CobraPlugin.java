@@ -1,5 +1,6 @@
 package me.notaeris.cobra;
 
+import lombok.Getter;
 import me.notaeris.cobra.command.*;
 import me.notaeris.cobra.listener.ChatListener;
 import me.notaeris.cobra.listener.FreezeListener;
@@ -12,6 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
+@Getter
 public class CobraPlugin extends JavaPlugin {
 
     private CommandFramework framework;
@@ -53,7 +55,10 @@ public class CobraPlugin extends JavaPlugin {
                 new StaffModeCommand(),
                 new InvseeCommand(),
                 new FreezeCommand(),
-                new SpawnCommands()
+                new SpawnCommands(),
+                new RequestsCommand(),
+                new ReportsCommand(),
+                new StaffChatsCommad()
         ).forEach(command -> this.framework.registerCommands(command));
     }
 

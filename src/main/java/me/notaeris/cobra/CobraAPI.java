@@ -1,5 +1,7 @@
 package me.notaeris.cobra;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -7,6 +9,7 @@ import org.bukkit.entity.Player;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter @Setter
 public class CobraAPI {
 
     private final Set<Player> staffmode = new HashSet<>();
@@ -15,8 +18,11 @@ public class CobraAPI {
     private final Set<Player> togglepm = new HashSet<>();
     private final Set<Player> sounds = new HashSet<>();
     private final Set<Player> fly = new HashSet<>();
+    private final Set<Player> staffchat = new HashSet<>();
 
     private boolean chat;
+    private boolean requests;
+    private boolean reports;
 
     /**
      * check if staffmode is toggled
@@ -212,6 +218,34 @@ public class CobraAPI {
     }
 
     /**
+     * get the staffchat
+     *
+     * @param player the player
+     * @return the staffchat
+     */
+    public boolean getStaffChat(Player player) {
+        return this.staffchat.contains(player);
+    }
+
+    /**
+     * set staffchat enabled
+     *
+     * @param player the player
+     */
+    public void setStaffChatEnabled(Player player) {
+        this.staffchat.add(player);
+    }
+
+    /**
+     * set staffchat disabled
+     *
+     * @param player the player
+     */
+    public void setStaffChatDisabled(Player player) {
+        this.staffchat.remove(player);
+    }
+
+    /**
      * check if the chat is toggled
      *
      * @return boolean
@@ -227,5 +261,41 @@ public class CobraAPI {
      */
     public void setChat(boolean chat) {
         this.chat = chat;
+    }
+
+    /**
+     * check if the requests is toggled
+     *
+     * @return the requests
+     */
+    public boolean isRequests() {
+        return !this.requests;
+    }
+
+    /**
+     * set the requests true/false
+     *
+     * @param requests the requests
+     */
+    public void setRequests(boolean requests) {
+        this.requests = requests;
+    }
+
+    /**
+     * get the reports
+     *
+     * @return the reports
+     */
+    public boolean getReports() {
+        return !this.reports;
+    }
+
+    /**
+     * set the reports true/false
+     *
+     * @param reports the reports
+     */
+    public void setReports(boolean reports) {
+        this.reports = reports;
     }
 }

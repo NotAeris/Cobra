@@ -42,7 +42,8 @@ command:
     disabled: "&aVanish &ehas been &cdisabled&6."
   staffchat:
     usage: "&cUsage: /%command% <message...>"
-    format: "&b[S] &7[%server%&7] &b%player%&7: &f%message%"
+    format:
+      - "&b[S] &7[%server%&7] &b%player%&7: &f%message%"
   message:
     usage: "&cUsage: /%command% <player> <message...>"
     to: "&7(To %target%&7) %message%"
@@ -68,14 +69,16 @@ command:
   request:
     usage: "&cUsage: /%command% <message...>"
     sent: "&aWe have received your request."
-    format: "&b[R] &7[%server%] &b%player% &7has requested assistance. &bReason: &7%message%"
+    format:
+      - "&9[Request] [%server%] &b%player% &7has requested assistance: &f%message%"
     cooldown:
       time: 120
       message: "&cYou can only make one staff request every 2 minutes."
   report:
     usage: "&cUsage: /%command% <player> <message...>"
     sent: "&aWe have received your report."
-    format: "&b[R] &7[%server%] &b%target% &7was reported by &b%player%&7. &bReason: &7%message%"
+    format:
+      - "&9[Report] [%server%] &b%player% &7has reported &b%target% &7for: &f%message%"
     cooldown:
       time: 120
       message: "&cYou can only make one staff request every 2 minutes."
@@ -100,6 +103,18 @@ command:
       unfroze: "&eYou unfroze &f%target%&e."
   setspawn: "&aYou have updated the player spawn point."
   spawn: "&aYou have teleported to spawn."
+  requests:
+    enabled: "&eYou have &aenabled &erequest messages."
+    disabled: "&eYou have &cdisabled &erequest messages."
+    currently_disabled: "&cRequests are disabled."
+  reports:
+    enabled: "&eYou have &aenabled &ereport messages."
+    disabled: "&eYou have &cdisabled &ereport messages."
+    currently_disabled: "&cReports are disabled."
+  staffchats:
+    enabled: "&eYou have &aenabled &estaffchat messages."
+    disabled: "&eYou have &cdisabled &estaffchat messages."
+    currently_disabled: "&cYour staffchat messages are disabled."
 
 staffmode:
   you_cannot_do_this: "&c&lYou cannot do this whilst in StaffMode!"

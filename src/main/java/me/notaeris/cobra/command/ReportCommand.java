@@ -2,7 +2,6 @@ package me.notaeris.cobra.command;
 
 import me.notaeris.cobra.CobraPlugin;
 import me.notaeris.cobra.util.CC;
-import me.notaeris.cobra.util.Cooldown;
 import me.notaeris.cobra.util.command.Command;
 import me.notaeris.cobra.util.command.CommandArgs;
 import org.apache.commons.lang.StringUtils;
@@ -24,17 +23,24 @@ public class ReportCommand {
             if(target == null) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             } else {
-                if(CobraPlugin.get().getCooldown().hasCooldown(player.getUniqueId(), "report")) {
-                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.cooldown.message")));
+                if(CobraPlugin.get().getAPI().getReports()) {
+                    if(CobraPlugin.get().getCooldown().hasCooldown(player.getUniqueId(), "report")) {
+                        player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.cooldown.message")));
+                    } else {
+                        CobraPlugin.get().getConfig().getStringList("command.report.format").forEach(string -> Bukkit.getOnlinePlayers().forEach(target2 -> {
+                            if(target2.hasPermission("cobra.staff")) {
+                                target2.sendMessage(CC.translate(string
+                                        .replace("%server%", CobraPlugin.get().getConfig().getString("server_name")))
+                                        .replace("%player%", player.getName())
+                                        .replace("%target%", target.getName())
+                                        .replace("%message%", message));
+                            }
+                        }));
+                        player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.sent")));
+                        CobraPlugin.get().getCooldown().addCooldown(player.getUniqueId(), "report", CobraPlugin.get().getConfig().getInt("command.report.cooldown.time"));
+                    }
                 } else {
-                    Bukkit.broadcast(CC.translate(CobraPlugin.get().getConfig().getString("command.report.format"))
-                            .replace("%server%", CobraPlugin.get().getConfig().getString("server_name"))
-                            .replace("%target%", target.getName())
-                            .replace("%player%", player.getName())
-                            .replace("%message%", message),
-                            "cobra.staff");
-                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.report.sent")));
-                    CobraPlugin.get().getCooldown().addCooldown(player.getUniqueId(), "report", CobraPlugin.get().getConfig().getInt("command.report.cooldown.time"));
+                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.reports.currently_disabled")));
                 }
             }
         }
