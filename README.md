@@ -13,3 +13,5 @@
 - cobra.command.teleport
 - cobra.command.teleporthere
 - cobra.command.vanish
+- cobra.command.requests
+- cobra.command.reports
