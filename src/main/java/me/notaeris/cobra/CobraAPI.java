@@ -18,7 +18,7 @@ public class CobraAPI {
     private final Set<Player> togglepm = new HashSet<>();
     private final Set<Player> sounds = new HashSet<>();
     private final Set<Player> fly = new HashSet<>();
-    private final Set<Player> staffchat = new HashSet<>();
+    public final Set<Player> staffchat = new HashSet<>();
 
     private boolean chat;
     private boolean requests;

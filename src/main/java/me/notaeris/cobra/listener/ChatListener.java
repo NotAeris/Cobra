@@ -13,9 +13,7 @@ public class ChatListener implements Listener {
     public void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
 
-        if(CobraPlugin.get().getAPI().getChat()) {
-            event.setCancelled(false);
-        } else {
+        if(!CobraPlugin.get().getAPI().getChat()) {
             if(player.hasPermission("cobra.staff")) {
                 event.setCancelled(false);
             } else {

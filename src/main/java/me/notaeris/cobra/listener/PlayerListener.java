@@ -25,10 +25,13 @@ public class PlayerListener implements Listener {
         Profile profile = new Profile(player.getUniqueId());
 
         if(profile.getPlayer().hasPermission("cobra.staff")) {
-            Bukkit.broadcast(CC.translate(CobraPlugin.get().getConfig().getString("staff.connect"))
-                            .replace("%server%", CobraPlugin.get().getConfig().getString("server_name"))
-                            .replace("%player%", profile.getPlayer().getName()),
-                    "cobra.staff");
+            CobraPlugin.get().getConfig().getStringList("staff.connect").forEach(string -> Bukkit.getOnlinePlayers().forEach(target -> {
+                if(target.hasPermission("cobra.staff")) {
+                    target.sendMessage(CC.translate(string
+                            .replace("%player%", profile.getPlayer().getName()))
+                            .replace("%server%", CobraPlugin.get().getConfig().getString("server_name")));
+                }
+            }));
         }
 
         if(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.teleporter.slot")) == null
@@ -53,10 +56,13 @@ public class PlayerListener implements Listener {
         Profile profile = new Profile(event.getPlayer().getUniqueId());
 
         if(profile.getPlayer().hasPermission("cobra.staff")) {
-            Bukkit.broadcast(CC.translate(CobraPlugin.get().getConfig().getString("staff.disconnect"))
-                            .replace("%server%", CobraPlugin.get().getConfig().getString("server_name"))
-                            .replace("%player%", profile.getPlayer().getName()),
-                    "cobra.staff");
+            CobraPlugin.get().getConfig().getStringList("staff.disconnect").forEach(string -> Bukkit.getOnlinePlayers().forEach(target -> {
+                if(target.hasPermission("cobra.staff")) {
+                    target.sendMessage(CC.translate(string
+                            .replace("%player%", profile.getPlayer().getName()))
+                            .replace("%server%", CobraPlugin.get().getConfig().getString("server_name")));
+                }
+            }));
         }
     }
 
