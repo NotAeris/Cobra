@@ -13,7 +13,7 @@ public class MessageCommands {
 
     private Player target;
 
-    @Command(name = "message", aliases = { "msg", "m", "t"}, playerOnly = true)
+    @Command(name = "message", aliases = {"msg", "m", "t"}, playerOnly = true)
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
         String message = StringUtils.join(args.getArgs(), ' ', 1, args.length());

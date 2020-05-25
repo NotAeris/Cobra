@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 public class ChatCommands {
 
-    @Command(name = "chat", permission = "cobra.command.clearchat")
+    @Command(name = "chat", permission = "cobra.command.clearchat", playerOnly = true)
     public void execute(CommandArgs args) {
         if(args.length() == 0) {
             CobraPlugin.get().getConfig().getStringList("command.chat.usage").forEach(string ->

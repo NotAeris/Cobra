@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class ListCommand {
 
-    @Command(name = "list", aliases= { "online", "who" })
+    @Command(name = "list", aliases = { "online", "who" })
     public void execute(CommandArgs args) {
         CobraPlugin.get().getConfig().getStringList("command.list").forEach(string -> args.getSender().sendMessage(CC.translate(string
                 .replace("%online_players%", Integer.toString(Bukkit.getOnlinePlayers().size())))

@@ -23,10 +23,10 @@ public class StaffModeCommand {
             player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.staffmode.disabled")));
         } else {
             CobraPlugin.get().getAPI().setStaffModeEnabled(player);
-            CobraPlugin.get().getAPI().setVanishEnabled(player);
             player.getInventory().clear();
             player.getActivePotionEffects().forEach(effect -> player.removePotionEffect(effect.getType()));
             player.setGameMode(GameMode.CREATIVE);
+            CobraPlugin.get().getAPI().setVanishEnabled(player);
 
             ItemStack teleporter = new ItemBuilder(Material.getMaterial(CobraPlugin.get().getConfig().getString("staffmode.item.teleporter.material")))
                     .setName(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.teleporter.name")))
@@ -43,7 +43,7 @@ public class StaffModeCommand {
                     .create();
             player.getInventory().setItem(CobraPlugin.get().getConfig().getInt("staffmode.item.freezer.slot"), freezer);
 
-            ItemStack vanish = new ItemBuilder(Material.getMaterial(CobraPlugin.get().getConfig().getString("staffmode.item.vanish.material")), CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.amount"), (short) CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.value"))
+            ItemStack vanish = new ItemBuilder(Material.getMaterial(CobraPlugin.get().getConfig().getString("staffmode.item.vanish.material")), CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.amount"), (short) CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.value2"))
                     .setName(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.vanish.name")))
                     .create();
             player.getInventory().setItem(CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.slot"), vanish);
