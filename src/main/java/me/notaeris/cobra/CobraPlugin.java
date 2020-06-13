@@ -6,7 +6,6 @@ import me.notaeris.cobra.listener.ChatListener;
 import me.notaeris.cobra.listener.FreezeListener;
 import me.notaeris.cobra.listener.PlayerListener;
 import me.notaeris.cobra.listener.StaffModeListener;
-import me.notaeris.cobra.util.MongoDB;
 import me.notaeris.cobra.util.command.CommandFramework;
 import me.notaeris.cobra.util.Cooldown;
 import org.bukkit.Bukkit;
@@ -17,7 +16,6 @@ import java.util.Arrays;
 @Getter
 public class CobraPlugin extends JavaPlugin {
 
-    private MongoDB db;
     private CommandFramework framework;
     private CobraAPI api;
     private Cooldown cooldown;
@@ -26,7 +24,6 @@ public class CobraPlugin extends JavaPlugin {
     public void onEnable() {
         this.saveDefaultConfig();
 
-        this.db = new MongoDB();
         this.framework = new CommandFramework(this);
         this.api = new CobraAPI();
         this.cooldown = new Cooldown();
@@ -72,10 +69,6 @@ public class CobraPlugin extends JavaPlugin {
                 new StaffModeListener(),
                 new FreezeListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
-    }
-
-    public MongoDB getDb() {
-        return this.db;
     }
 
     public CobraAPI getAPI() {
