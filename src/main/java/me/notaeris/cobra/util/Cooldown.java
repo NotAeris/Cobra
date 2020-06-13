@@ -1,74 +1,57 @@
 package me.notaeris.cobra.util;
 
-import lombok.Setter;
-
 import java.util.HashMap;
 import java.util.UUID;
 
-@Setter
 public class Cooldown {
 
-    private final HashMap<String, Cooldown> cooldowns = new HashMap<>();
+    private final HashMap<String, Cooldown> cooldown = new HashMap<>();
     private long start;
     private int seconds;
 
     /**
-     * add a cooldown
+     * Add a cooldown
      *
-     * @param uuid uuid of a cooldown
-     * @param name name of a cooldown
-     * @param seconds time of a cooldown
+     * @param uuid the uuid
+     * @param name the name
+     * @param seconds the seconds
      */
     public void addCooldown(UUID uuid, String name, int seconds) {
+        this.cooldown.put(uuid + name, this);
         this.start = System.currentTimeMillis();
-        this.cooldowns.put(uuid.toString() + name, this);
         this.seconds = seconds;
     }
 
     /**
-     * check if the cooldown is active
+     * Check if a cooldown is active
      *
-     * @param uuid uuid of a cooldown
-     * @param name name of a cooldown
-     * @return the cooldown
+     * @param uuid the uuid
+     * @param name the name
+     * @return if the cooldown is active/inactive
      */
     public boolean hasCooldown(UUID uuid, String name) {
-        if(getRemaining(uuid, name) >= 1) {
+        if(this.getRemaining(uuid, name) >= 1) {
             return true;
         }
-        this.cooldowns.remove(uuid + name);
+        this.cooldown.remove(uuid + name);
         return false;
     }
 
     /**
-     * get an existing cooldown
+     * Get the remaining time
      *
-     * @param uuid uuid of the cooldown
-     * @param name name of the cooldown
-     * @return the cooldown
-     */
-    private Cooldown getCooldown(UUID uuid, String name) {
-        return this.cooldowns.get(uuid.toString() + name);
-    }
-
-    /**
-     * get the remaining time of a cooldown
-     *
-     * @param uuid uuid of a cooldown
-     * @param name name of a cooldown
+     * @param uuid the uuid
+     * @param name the name
      * @return the remaining time
      */
     public int getRemaining(UUID uuid, String name) {
-        Cooldown cooldown = getCooldown(uuid, name);
-        int f = -1;
+        Cooldown cooldown = this.cooldown.get(uuid + name);
+        int time = -1;
 
-        if (cooldown != null) {
-            long now = System.currentTimeMillis();
-            long cooldownTime = this.start;
-            int totalTime = cooldown.seconds;
-            int r = (int) (now - cooldownTime) / 1000;
-            f = (r - totalTime) * -1;
+        if(cooldown != null) {
+            time = (int) ((System.currentTimeMillis() - this.start) / 1000 - cooldown.seconds) * -1;
         }
-        return f;
+
+        return time;
     }
 }

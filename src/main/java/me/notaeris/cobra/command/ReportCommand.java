@@ -20,6 +20,7 @@ public class ReportCommand {
                     .replace("%command%", args.getLabel()));
         } else {
             Player target = Bukkit.getPlayer(args.getArgs(0));
+
             if(target == null) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             } else {

@@ -14,40 +14,40 @@ public class ItemBuilder {
     private final ItemStack itemStack;
 
     /**
-     * constructor
+     * Constructor for ItemBuilder
      *
-     * @param material item material
-     * @param amount item amount
+     * @param material the material
+     * @param amount the amount
      */
     public ItemBuilder(Material material, int amount) {
         itemStack = new ItemStack(material, amount);
     }
 
     /**
-     * constructor
+     * Constructor for ItemBuilder
      *
-     * @param material item material
+     * @param material the material
      */
     public ItemBuilder(Material material) {
         this(material, 1);
     }
 
     /**
-     * constructor
+     * Constructor for ItemBuilder
      *
-     * @param material item material
-     * @param amount item amount
-     * @param value item value
+     * @param material the material
+     * @param amount the amount
+     * @param value the value
      */
     public ItemBuilder(Material material, int amount, short value) {
-        itemStack = new ItemStack(material, amount, value);
+        this.itemStack = new ItemStack(material, amount, value);
     }
 
     /**
-     * set the name of a item
+     * Set the name of an item
      *
-     * @param name item name
-     * @return the item
+     * @param name the name
+     * @return the new item name
      */
     public ItemBuilder setName(String name) {
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -57,10 +57,10 @@ public class ItemBuilder {
     }
 
     /**
-     * set the lore of a item
+     * Set the lore of an item
      *
-     * @param lore item lore
-     * @return the item
+     * @param lore the lore
+     * @return the new item lore
      */
     public ItemBuilder setLore(List<String> lore) {
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -70,11 +70,11 @@ public class ItemBuilder {
     }
 
     /**
-     * add a enchant to a item
+     * Add a enchant to an item
      *
-     * @param enchantment add a enchant
-     * @param level add a level
-     * @return the item
+     * @param enchantment the enchant
+     * @param level the level
+     * @return the new item enchant
      */
     public ItemBuilder addEnchant(Enchantment enchantment, int level) {
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -84,10 +84,10 @@ public class ItemBuilder {
     }
 
     /**
-     * set the color of a item
+     * Set the color of a item
      *
-     * @param color item color
-     * @return the item
+     * @param color the color
+     * @return the item color
      */
     public ItemBuilder setColor(Color color) {
         LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta)itemStack.getItemMeta();
@@ -97,7 +97,7 @@ public class ItemBuilder {
     }
 
     /**
-     * create a itemstack
+     * Create a itemstack
      *
      * @return the itemstack
      */

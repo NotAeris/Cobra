@@ -13,7 +13,7 @@ public class MessageCommands {
 
     private Player target;
 
-    @Command(name = "message", aliases = {"msg", "m", "t"}, playerOnly = true)
+    @Command(name = "message", aliases = { "msg", "m", "t"}, playerOnly = true)
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
         String message = StringUtils.join(args.getArgs(), ' ', 1, args.length());
@@ -23,6 +23,7 @@ public class MessageCommands {
                     .replace("%command%", args.getLabel()));
         } else {
             this.target = Bukkit.getPlayer(args.getArgs(0));
+
             if (this.target == null) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("player_offline")));
             }
@@ -59,16 +60,12 @@ public class MessageCommands {
             if(CobraPlugin.get().getAPI().getTogglePm(player) || CobraPlugin.get().getAPI().getTogglePm(this.target)) {
                 player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.togglepm.messages_disabled")));
             } else {
-                if(CobraPlugin.get().getAPI().getSounds(player)) {
-                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.to"))
-                            .replace("%target%", this.target.getName())
-                            .replace("%message%", message));
-                } else {
+                if(!CobraPlugin.get().getAPI().getSounds(player)) {
                     player.playSound(this.target.getLocation(), Sound.SUCCESSFUL_HIT, 100F, 0F);
-                    player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.to"))
-                            .replace("%target%", this.target.getName())
-                            .replace("%message%", message));
                 }
+                player.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.to"))
+                        .replace("%target%", this.target.getName())
+                        .replace("%message%", message));
                 this.target.sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("command.message.from"))
                         .replace("%player%", player.getName())
                         .replace("%message%", message));

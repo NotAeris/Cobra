@@ -18,24 +18,24 @@ public class CobraAPI {
     private final Set<Player> togglepm = new HashSet<>();
     private final Set<Player> sounds = new HashSet<>();
     private final Set<Player> fly = new HashSet<>();
-    private final Set<Player> staffchat = new HashSet<>();
+    public final Set<Player> staffchat = new HashSet<>();
 
     private boolean chat;
     private boolean requests;
     private boolean reports;
 
     /**
-     * check if staffmode is toggled
+     * Check if staffmode is toggled
      *
      * @param player the player
-     * @return arraylist
+     * @return the hashset
      */
     public boolean getStaffMode(Player player) {
         return this.staffmode.contains(player);
     }
 
     /**
-     * set staffmode enabled
+     * Set staffmode enabled
      *
      * @param player the player
      */
@@ -44,7 +44,7 @@ public class CobraAPI {
     }
 
     /**
-     * set staffmode disabled
+     * Set staffmode disabled
      *
      * @param player the player
      */
@@ -53,17 +53,17 @@ public class CobraAPI {
     }
 
     /**
-     * check if frozen is toggled
+     * Check if frozen is toggled
      *
      * @param entity the entity
-     * @return arraylist
+     * @return the hashset
      */
     public boolean getFreeze(Entity entity) {
         return this.freeze.contains(entity);
     }
 
     /**
-     * set the player frozen
+     * Set the player frozen
      *
      * @param player the player
      */
@@ -72,7 +72,7 @@ public class CobraAPI {
     }
 
     /**
-     * set the player unfrozen
+     * Set the player unfrozen
      *
      * @param player the player
      */
@@ -81,17 +81,17 @@ public class CobraAPI {
     }
 
     /**
-     * check if togglepm is toggled
+     * Check if togglepm is toggled
      *
      * @param player the player
-     * @return arraylist
+     * @return the hashset
      */
     public boolean getTogglePm(Player player) {
         return this.togglepm.contains(player);
     }
 
     /**
-     * set togglepm enabled
+     * Set togglepm enabled
      *
      * @param player the player
      */
@@ -100,7 +100,7 @@ public class CobraAPI {
     }
 
     /**
-     * set togglepm disabled
+     * Set togglepm disabled
      *
      * @param player the player
      */
@@ -109,17 +109,17 @@ public class CobraAPI {
     }
 
     /**
-     * check if sounds are toggled
+     * Check if sounds are toggled
      *
      * @param player the player
-     * @return arraylist
+     * @return the hashset
      */
     public boolean getSounds(Player player) {
         return this.sounds.contains(player);
     }
 
     /**
-     * set sounds enabled
+     * Set sounds enabled
      *
      * @param player the player
      */
@@ -128,7 +128,7 @@ public class CobraAPI {
     }
 
     /**
-     * set sounds disabled
+     * Set sounds disabled
      *
      * @param player the player
      */
@@ -137,17 +137,17 @@ public class CobraAPI {
     }
 
     /**
-     * check if vanished is toggled
+     * Check if vanish is toggled
      *
      * @param player the player
-     * @return arraylist
+     * @return the hashset
      */
     public boolean getVanish(Player player) {
         return this.vanish.contains(player);
     }
 
     /**
-     * set vanish enabled
+     * Set vanish enabled
      *
      * @param player the player
      */
@@ -156,7 +156,7 @@ public class CobraAPI {
     }
 
     /**
-     * set vanish disabled
+     * Set vanish disabled
      *
      * @param player the player
      */
@@ -165,10 +165,10 @@ public class CobraAPI {
     }
 
     /**
-     * set the player vanished
+     * Set the player vanished
      *
      * @param player the player
-     * @param isVanished boolean
+     * @param isVanished the boolean
      */
     public void setVanished(Player player, boolean isVanished) {
         if(isVanished) {
@@ -190,17 +190,17 @@ public class CobraAPI {
     }
 
     /**
-     * check if fly is toggled
+     * Check if fly is toggled
      *
      * @param player the player
-     * @return arraylist
+     * @return the hashset
      */
     public boolean getFly(Player player) {
         return this.fly.contains(player);
     }
 
     /**
-     * set fly enabled
+     * Set fly enabled
      *
      * @param player the player
      */
@@ -209,7 +209,7 @@ public class CobraAPI {
     }
 
     /**
-     * set fly disabled
+     * Set fly disabled
      *
      * @param player the player
      */
@@ -218,17 +218,17 @@ public class CobraAPI {
     }
 
     /**
-     * get the staffchat
+     * Get the staffchat
      *
      * @param player the player
-     * @return the staffchat
+     * @return the hashset
      */
     public boolean getStaffChat(Player player) {
         return this.staffchat.contains(player);
     }
 
     /**
-     * set staffchat enabled
+     * Set staffchat enabled
      *
      * @param player the player
      */
@@ -237,7 +237,7 @@ public class CobraAPI {
     }
 
     /**
-     * set staffchat disabled
+     * Set staffchat disabled
      *
      * @param player the player
      */
@@ -246,54 +246,54 @@ public class CobraAPI {
     }
 
     /**
-     * check if the chat is toggled
+     * Check if the chat is toggled
      *
-     * @return boolean
+     * @return the boolean
      */
     public boolean getChat() {
         return !this.chat;
     }
 
     /**
-     * set the chat true/false
+     * Set the chat true/false
      *
-     * @param chat the chat
+     * @param chat the boolean
      */
     public void setChat(boolean chat) {
         this.chat = chat;
     }
 
     /**
-     * check if the requests is toggled
+     * Check if the requests is toggled
      *
-     * @return the requests
+     * @return the boolean
      */
     public boolean isRequests() {
         return !this.requests;
     }
 
     /**
-     * set the requests true/false
+     * Set the requests true/false
      *
-     * @param requests the requests
+     * @param requests the boolean
      */
     public void setRequests(boolean requests) {
         this.requests = requests;
     }
 
     /**
-     * get the reports
+     * Get the reports
      *
-     * @return the reports
+     * @return the boolean
      */
     public boolean getReports() {
         return !this.reports;
     }
 
     /**
-     * set the reports true/false
+     * Set the reports true/false
      *
-     * @param reports the reports
+     * @param reports the boolean
      */
     public void setReports(boolean reports) {
         this.reports = reports;

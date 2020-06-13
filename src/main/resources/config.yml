@@ -1,7 +1,14 @@
+mongo:
+  host: 127.0.0.1
+  port: 27017
+  database:
+    name: "cobra-core"
+    collection:
+      profiles: "profiles"
+
 executor: "&cThis command is only executable by players."
 no_permission: "&cNo permission."
 player_offline: "&cThis player is offline."
-cannot_execute_command: "&cYou can't execute this command."
 
 command:
   discord: "&eDiscord: &fdiscord.gg/lol"
@@ -160,5 +167,23 @@ freeze:
 server_name: "Dev"
 
 staff:
-  connect: "&b[S] &b%player% &fhas &aconnected &fto &b%server%"
-  disconnect: "&b[S] &b%player% &fhas &cdisconnected &ffrom &b%server%"
+  connect:
+    - "&b[S] &b%player% &fhas &aconnected &fto &b%server%"
+  disconnect:
+    - "&b[S] &b%player% &fhas &cdisconnected &ffrom &b%server%"
+
+filter:
+  command:
+    message: "&cYou cannot execute this command."
+    blocked_commands:
+      - "/me"
+      - "/bukkit:me"
+      - "/minecraft:me"
+      - "//calc"
+  chat:
+    blocked_message: "&cYou cannot say that here!"
+    message:
+      - "&c[Filtered] &a%player% &fsaid&7: &f%message%"
+    blocked_messages:
+      - "cunt"
+      - "nigger"

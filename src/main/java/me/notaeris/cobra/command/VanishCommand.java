@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class VanishCommand {
 
-    @Command(name = "vanish", aliases = {"v"}, permission = "cobra.command.vanish", playerOnly = true)
+    @Command(name = "vanish", aliases = { "v" }, permission = "cobra.command.vanish", playerOnly = true)
     public void execute(CommandArgs args) {
         Player player = args.getPlayer();
 

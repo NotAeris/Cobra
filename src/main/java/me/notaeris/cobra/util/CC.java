@@ -5,9 +5,9 @@ import org.bukkit.ChatColor;
 public class CC {
 
     /**
-     * translates a string
+     * Translate a string
      *
-     * @param string to be translated
+     * @param string the string
      * @return the translated string
      */
     public static String translate(String string) {

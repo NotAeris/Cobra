@@ -33,21 +33,6 @@ public class PlayerListener implements Listener {
                 }
             }));
         }
-
-        if(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.teleporter.slot")) == null
-                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.inspector.slot")).getItemMeta().getDisplayName() == null
-                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.freezer.slot")).getItemMeta().getDisplayName() == null
-                || player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.slot")).getItemMeta().getDisplayName() == null) {
-            return;
-        } else {
-            if(CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.teleporter.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.teleporter.slot")).getItemMeta().getDisplayName())
-                    || CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.inspector.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.inspector.slot")).getItemMeta().getDisplayName())
-                    || CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.freezer.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.freezer.slot")).getItemMeta().getDisplayName())
-                    || CC.translate(CobraPlugin.get().getConfig().getString("staffmode.item.vanish.name")).equalsIgnoreCase(player.getInventory().getItem(CobraPlugin.get().getConfig().getInt("staffmode.item.vanish.slot")).getItemMeta().getDisplayName())) {
-                player.getInventory().clear();
-                player.setGameMode(GameMode.SURVIVAL);
-            }
-        }
     }
 
     @EventHandler
@@ -66,19 +51,12 @@ public class PlayerListener implements Listener {
         }
     }
 
-    private final List<String> BLOCKED_COMMANDS = Arrays.asList(
-            "/me",
-            "/bukkit:me",
-            "/minecraft:me",
-            "//calc"
-    );
-
     @EventHandler
     public void onCommandProcess(PlayerCommandPreprocessEvent event) {
-        for(String blockedCommand : BLOCKED_COMMANDS) {
+        for(String blockedCommand : CobraPlugin.get().getConfig().getStringList("filter.command.blocked_commands")) {
             if(event.getMessage().startsWith(blockedCommand)) {
                 event.setCancelled(true);
-                event.getPlayer().sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("cannot_execute_command")));
+                event.getPlayer().sendMessage(CC.translate(CobraPlugin.get().getConfig().getString("filter.command.message")));
             }
         }
     }
